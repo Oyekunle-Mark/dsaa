@@ -25,6 +25,9 @@ private:
     std::size_t mSize;
     Node *head;
     Node *tail;
+
+    void init();
+
 public:
     class const_iterator {
     public:
