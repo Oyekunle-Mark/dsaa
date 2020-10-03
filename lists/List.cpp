@@ -141,3 +141,34 @@ template<typename Object>
 void List<Object>::pop_back() {
     erase(--end());
 }
+
+template<typename Object>
+typename List<Object>::iterator List<Object>::insert(iterator iter, const Object &item) {
+    Node *p = iter.current;
+    mSize++;
+    return {p->prev = p->prev->next = new Node{item, p->prev, p}};
+}
+
+template<typename Object>
+typename List<Object>::iterator List<Object>::insert(iterator iter, Object &&item) {
+    Node *p = iter.current;
+    mSize++;
+    return {p->prev = p->prev->next = new Node{std::move(item), p->prev, p}};
+}
+
+template<typename Object>
+typename List<Object>::iterator List<Object>::erase(iterator iter) {
+    Node *p = iter.current;
+    iterator ret{p->next};
+    p->prev->next = p->next;
+    p->next->prev = p->prev;
+    delete p;
+
+    return ret;
+}
+
+template<typename Object>
+typename List<Object>::iterator List<Object>::erase(iterator from, iterator to) {
+    for (iterator iter = from; iter != to;)
+        iter = erase(iter);
+}
