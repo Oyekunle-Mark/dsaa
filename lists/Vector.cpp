@@ -43,3 +43,30 @@ Vector<Object> &Vector<Object>::operator=(Vector<Object> &&rhs) {
 
     return *this;
 }
+
+template<typename Object>
+Vector<Object>::~Vector<Object>() {
+    delete[] objects;
+}
+
+template<typename Object>
+void Vector<Object>::resize(std::size_t newSize) {
+    if (newSize > mCapacity)
+        reserve(newSize * 2);
+    mSize = newSize;
+}
+
+template<typename Object>
+void Vector<Object>::reserve(std::size_t newCapacity) {
+    if (newCapacity < mSize)
+        return;
+
+    auto *newObjects = new Object[newCapacity];
+
+    for (std::size_t i{}; i < mSize; ++i)
+        newObjects[i] = std::move(objects[i]);
+
+    mCapacity = newCapacity;
+    std::move(objects, newObjects);
+    delete[] newObjects;
+}
