@@ -67,6 +67,33 @@ public:
     };
 
     class iterator : public const_iterator {
+    public:
+        iterator() = default;
+
+        Object &operator*() {
+            return const_iterator::retrieve();
+        }
+
+        const Object &operator*() const {
+            return const_iterator::operator*();
+        }
+
+        iterator &operator++() {
+            this->current = this->current->next;
+            return *this;
+        }
+
+        iterator operator++(int) {
+            iterator old = *this;
+            ++(*this);
+            return old;
+        }
+
+    protected:
+        explicit iterator(Node *p)
+                : const_iterator{p} {}
+
+        friend class List<Object>;
     };
 
     List();
