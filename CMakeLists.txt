@@ -4,4 +4,4 @@ project(dsaa)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_FLAGS "-Wall")
 
-add_executable(dsaa main.cpp lists/Vector.cpp lists/Vector.h)
+add_executable(dsaa main.cpp lists/Vector.cpp lists/Vector.h lists/List.cpp lists/List.h)
