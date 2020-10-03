@@ -26,3 +26,20 @@ Vector<Object> &Vector<Object>::operator=(const Vector<Object> &rhs) {
 
     return *this;
 }
+
+template<typename Object>
+Vector<Object>::Vector(Vector<Object> &&rhs)
+        : mSize{rhs.mSize}, mCapacity{mCapacity}, objects{rhs.objects} {
+    rhs.objects = nullptr;
+    rhs.mSize = 0;
+    rhs.mCapacity = 0;
+}
+
+template<typename Object>
+Vector<Object> &Vector<Object>::operator=(Vector<Object> &&rhs) {
+    std::swap(mSize, rhs.mSize);
+    std::swap(mCapacity, rhs.mCapacity);
+    std::swap(objects, rhs.objects);
+
+    return *this;
+}
