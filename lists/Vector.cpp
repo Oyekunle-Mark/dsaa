@@ -70,3 +70,13 @@ void Vector<Object>::reserve(std::size_t newCapacity) {
     std::move(objects, newObjects);
     delete[] newObjects;
 }
+
+template<typename Object>
+Object &Vector<Object>::operator[](std::size_t index) {
+    return objects[index];
+}
+
+template<typename Object>
+const Object &Vector<Object>::operator[](std::size_t index) const {
+    return objects[index];
+}
