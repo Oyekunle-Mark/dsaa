@@ -80,3 +80,62 @@ template<typename Object>
 const Object &Vector<Object>::operator[](std::size_t index) const {
     return objects[index];
 }
+
+template<typename Object>
+std::size_t Vector<Object>::size() const {
+    return mSize;
+}
+
+template<typename Object>
+bool Vector<Object>::empty() const {
+    return size();
+}
+
+template<typename Object>
+std::size_t Vector<Object>::capacity() const {
+    return mCapacity;
+}
+
+template<typename Object>
+void Vector<Object>::push_back(const Object &item) {
+    if (mSize == mCapacity)
+        reserve(2 * mCapacity + 1);
+    objects[mSize++] = item;
+}
+
+template<typename Object>
+void Vector<Object>::push_back(const Object &&item) {
+    if (mSize == mCapacity)
+        reserve(2 * mCapacity + 1);
+    objects[mSize++] = std::move(item);
+}
+
+template<typename Object>
+void Vector<Object>::pop_back() {
+    mSize--;
+}
+
+template<typename Object>
+const Object &Vector<Object>::back() const {
+    return objects[mSize - 1];
+}
+
+template<typename Object>
+typename Vector<Object>::iterator Vector<Object>::begin() {
+    return &objects[0];
+}
+
+template<typename Object>
+typename Vector<Object>::const_iterator Vector<Object>::begin() const {
+    return &objects[0];
+}
+
+template<typename Object>
+typename Vector<Object>::iterator Vector<Object>::end() {
+    return &objects[size()];
+}
+
+template<typename Object>
+typename Vector<Object>::const_iterator Vector<Object>::end() const {
+    return &objects[size()];
+}
