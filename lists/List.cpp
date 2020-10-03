@@ -55,3 +55,39 @@ List<Object> &List<Object>::operator=(List<Object> &&rhs) {
 
     return *this;
 }
+
+template<typename Object>
+typename List<Object>::iterator List<Object>::begin() {
+    return {head->next};
+}
+
+template<typename Object>
+typename List<Object>::const_iterator List<Object>::begin() const {
+    return {head->next};
+}
+
+template<typename Object>
+typename List<Object>::iterator List<Object>::end() {
+    return {tail};
+}
+
+template<typename Object>
+typename List<Object>::const_iterator List<Object>::end() const {
+    return {tail};
+}
+
+template<typename Object>
+std::size_t List<Object>::size() const {
+    return mSize;
+}
+
+template<typename Object>
+bool List<Object>::empty() const {
+    return size();
+}
+
+template<typename Object>
+void List<Object>::clear() {
+    while (!empty())
+        pop_front();
+}
