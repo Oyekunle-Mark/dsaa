@@ -11,7 +11,17 @@ template<typename Object>
 class List {
 private:
     struct Node {
+        Object data;
+        Node *prev;
+        Node *next;
+
+        explicit Node(const Object &newObject = Object{}, Node p = nullptr, Node n = nullptr)
+                : data{newObject}, prev{p}, next{n} {}
+
+        explicit Node(Object &&newObject, Node p = nullptr, Node n = nullptr)
+                : data{newObject}, prev{p}, next{n} {}
     };
+
     std::size_t mSize;
     Node *head;
     Node *tail;
