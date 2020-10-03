@@ -91,3 +91,53 @@ void List<Object>::clear() {
     while (!empty())
         pop_front();
 }
+
+template<typename Object>
+Object &List<Object>::front() {
+    return *begin();
+}
+
+template<typename Object>
+const Object &List<Object>::front() const {
+    return *begin();
+}
+
+template<typename Object>
+Object &List<Object>::back() {
+    return *--end();
+}
+
+template<typename Object>
+const Object &List<Object>::back() const {
+    return *--end();
+}
+
+template<typename Object>
+void List<Object>::push_front(const Object &item) {
+    insert(begin(), item);
+}
+
+template<typename Object>
+void List<Object>::push_front(Object &&item) {
+    insert(begin(), std::move(item));
+}
+
+template<typename Object>
+void List<Object>::push_back(const Object &item) {
+    insert(end(), item);
+}
+
+template<typename Object>
+void List<Object>::push_back(Object &&item) {
+    insert(end(), item);
+}
+
+template<typename Object>
+void List<Object>::pop_front() {
+    erase(begin());
+}
+
+template<typename Object>
+void List<Object>::pop_back() {
+    erase(--end());
+}
