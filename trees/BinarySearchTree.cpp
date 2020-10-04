@@ -73,3 +73,22 @@ void BinarySearchTree<Comparable>::insert(Comparable &&item, BinaryNode *&t) {
         insert(std::move(item), t->right);
     else; // Not handling duplicates
 }
+
+template<typename Comparable>
+void BinarySearchTree<Comparable>::remove(const Comparable &item, BinaryNode *&t) {
+    if (t == nullptr)
+        return;
+    if (item < t->element)
+        remove(item, t->left);
+    else if (t->element < item)
+        remove(item, t->right);
+    else if (t->left != nullptr && t->right != nullptr) // node has two children
+    {
+        t->element = findMin(t->right)->element;
+        remove(t->element, t->right);
+    } else {
+        auto *oldNode = t;
+        t = t->left == nullptr ? t->right : t->left;
+        delete oldNode;
+    }
+}
