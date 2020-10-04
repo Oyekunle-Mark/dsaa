@@ -4,7 +4,7 @@
 #include <vector>
 #include <algorithm>
 
-class Solution {
+class SquaresOfSortedArray {
 public:
     static std::vector<int> sortedSquares(std::vector<int> &A) {
         std::vector<int> squares(0);
