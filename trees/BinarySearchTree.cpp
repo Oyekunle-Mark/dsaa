@@ -18,3 +18,36 @@ template<typename Comparable>
 void BinarySearchTree<Comparable>::remove(const Comparable &item) {
     return remote(item, root);
 }
+
+template<typename Comparable>
+bool BinarySearchTree<Comparable>::contains(const Comparable &item, BinaryNode *t) const {
+    if (t == nullptr)
+        return false;
+    else if (item < t->element)
+        return contains(item, t->left);
+    else if (t->element < item)
+        return contains(item, t->right);
+    else
+        return true;
+}
+
+template<typename Comparable>
+using BinaryNodeType = typename BinarySearchTree<Comparable>::BinaryNode;
+
+template<typename Comparable>
+BinaryNodeType<Comparable> *BinarySearchTree<Comparable>::findMin(BinaryNode *t) const {
+    if (t == nullptr)
+        return nullptr;
+    if (t->left == nullptr)
+        return t;
+    return findMin(t->left);
+}
+
+template<typename Comparable>
+BinaryNodeType<Comparable> *BinarySearchTree<Comparable>::findMax(BinaryNode *t) const {
+    if (t == nullptr)
+        return nullptr;
+    if (t->right == nullptr)
+        return t;
+    return findMin(t->right);
+}
