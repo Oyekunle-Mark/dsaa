@@ -92,3 +92,42 @@ void BinarySearchTree<Comparable>::remove(const Comparable &item, BinaryNode *&t
         delete oldNode;
     }
 }
+
+template<typename Comparable>
+BinarySearchTree<Comparable>::BinarySearchTree()
+        : root{nullptr} {}
+
+template<typename Comparable>
+BinarySearchTree<Comparable>::BinarySearchTree(const BinarySearchTree &rhs)
+        : root{nullptr} {
+    root = clone(rhs.root);
+}
+
+template<typename Comparable>
+BinarySearchTree<Comparable>::BinarySearchTree(BinarySearchTree &&rhs)
+        : root{nullptr} {
+    std::swap(root, rhs.root);
+}
+
+template<typename Comparable>
+BinaryNodeType<Comparable> *BinarySearchTree<Comparable>::clone(BinaryNode *t) const {
+    if (t == nullptr)
+        return nullptr;
+    else
+        return new BinaryNode{t->element, clone(t->left), clone(t->right)};
+}
+
+template<typename Comparable>
+BinarySearchTree<Comparable>::~BinarySearchTree() {
+    makeEmpty();
+}
+
+template<typename Comparable>
+void BinarySearchTree<Comparable>::makeEmpty(BinaryNode *&t) {
+    if (t != nullptr) {
+        makeEmpty(t->left);
+        makeEmpty(t->right);
+        delete t;
+    }
+    t = nullptr;
+}
