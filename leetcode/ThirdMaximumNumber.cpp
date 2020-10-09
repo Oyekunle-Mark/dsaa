@@ -2,7 +2,7 @@
 // Created by Oyekunle Oloyede on 09/10/2020.
 //
 #include <vector>
-//#include <algorithm>
+#include <algorithm>
 
 class ThirdMaximumNumber {
 public:
