@@ -11,7 +11,7 @@
 template<typename HashedObj>
 class HashTable {
 public:
-    explicit HashTable(int size = 10);
+    explicit HashTable(int size = 101);
 
     bool contains(const HashedObj &item) const;
 

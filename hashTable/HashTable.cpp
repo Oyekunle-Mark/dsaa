@@ -7,7 +7,9 @@
 
 template<typename HashedObj>
 HashTable<HashedObj>::HashTable(int size)
-        : currentSize{static_cast<std::size_t>(size)} {}
+        : currentSize{0}, theLists(size) {
+    makeEmpty();
+}
 
 template<typename HashedObj>
 std::size_t HashTable<HashedObj>::myHash(const HashedObj &item) const {
