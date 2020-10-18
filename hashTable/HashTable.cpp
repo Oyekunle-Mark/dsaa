@@ -26,3 +26,16 @@ bool HashTable<HashedObj>::contains(const HashedObj &item) const {
     auto &whichList = theLists[myHash(item)];
     return std::find(std::begin(whichList), std::end(whichList), item) != std::end(whichList);
 }
+
+template<typename HashedObj>
+bool HashTable<HashedObj>::remove(const HashedObj &item) {
+    auto &whichList = theLists[myHash(item)];
+    auto itr = std::find(std::begin(whichList), std::end(whichList), item);
+
+    if (itr == std::end(whichList))
+        return false;
+
+    whichList.erase(itr);
+    --currentSize;
+    return true;
+}
