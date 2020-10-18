@@ -19,10 +19,13 @@ public:
 
         while (currentNode != nullptr) {
             if (currentIndex == index)
-                return currentNode->value;
+                break;
 
             currentNode = currentNode->next;
+            ++currentIndex;
         }
+
+        return currentNode->value;
     }
 
     /** Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
