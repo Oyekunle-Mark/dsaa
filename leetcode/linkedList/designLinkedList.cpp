@@ -5,9 +5,8 @@
 class MyLinkedList {
 public:
     /** Initialize your data structure here. */
-    MyLinkedList() {
-
-    }
+    MyLinkedList()
+            : head{nullptr} {}
 
     /** Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
     int get(int index) {
@@ -33,6 +32,17 @@ public:
     void deleteAtIndex(int index) {
 
     }
+
+private:
+    struct LinkedListNode {
+        int value;
+        LinkedListNode *next;
+
+        LinkedListNode(int value, LinkedListNode *next = nullptr)
+                : value{value}, next{next} {}
+    };
+
+    LinkedListNode *head;
 };
 
 /**
