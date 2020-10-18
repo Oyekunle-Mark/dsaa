@@ -2,6 +2,7 @@
 // Created by Oyekunle Oloyede on 18/10/2020.
 //
 #include <cstddef>
+#include <iostream>
 
 class MyLinkedList {
 public:
@@ -64,10 +65,10 @@ public:
             return;
         }
 
-        if (index == 1) {
-            addAtHead(val);
-            return;
-        }
+//        if (index == 1) {
+//            addAtHead(val);
+//            return;
+//        }
 
         auto currentNode = head;
         int currentIndex = 0;
@@ -109,6 +110,18 @@ public:
             currentNode = currentNode->next;
             ++currentIndex;
         }
+    }
+
+    void print() const {
+        auto currentNode = head;
+
+        while (currentNode != nullptr) {
+            std::cout << currentNode->value << ' ';
+
+            currentNode = currentNode->next;
+        }
+
+        std::cout << std::endl;
     }
 
 private:
