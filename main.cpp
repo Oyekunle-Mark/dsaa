@@ -1,9 +1,14 @@
 #include <iostream>
-#include "leetcode/array/MaxConsecutiveOnes.cpp"
+#include "leetcode/linkedList/designLinkedList.cpp"
 
 int main() {
-    std::vector<int> data{5, 1, 1, 0, 1, 1, 1};
-    std::cout << MaxConsecutiveOnes::findMaxConsecutiveOnes(data) << std::endl;
+    MyLinkedList myLinkedList{};
+    myLinkedList.addAtHead(1);
+    myLinkedList.addAtTail(3);
+    myLinkedList.addAtIndex(1, 2);    // linked list becomes 1->2->3
+    std::cout << myLinkedList.get(1) << '\n';              // return 2
+    myLinkedList.deleteAtIndex(1);          // now the linked list is 1->3
+    std::cout << myLinkedList.get(1) << '\n';       // return 3
 
     return 0;
 }
