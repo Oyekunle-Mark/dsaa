@@ -39,3 +39,18 @@ bool HashTable<HashedObj>::remove(const HashedObj &item) {
     --currentSize;
     return true;
 }
+
+template<typename HashedObj>
+bool HashTable<HashedObj>::insert(const HashedObj &item) {
+    auto &whichList = theLists[myHash(item)];
+
+    if (std::find(std::begin(whichList), std::end(whichList), item) != std::end(whichList))
+        return false;
+
+    whichList.push_back(item);
+
+    if (++currentSize > theLists.size())
+        rehash();
+
+    return true;
+}
