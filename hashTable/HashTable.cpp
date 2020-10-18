@@ -54,3 +54,19 @@ bool HashTable<HashedObj>::insert(const HashedObj &item) {
 
     return true;
 }
+
+template<typename HashedObj>
+void HashTable<HashedObj>::rehash() {
+    std::vector<std::list<HashedObj>> oldLists = theLists;
+
+    theLists.resize(2 * theLists.size());
+
+    for (auto &thisList: theLists)
+        thisList.clear();
+
+    currentSize = 0;
+
+    for (auto &thisList: oldLists)
+        for (auto &item: thisList)
+            insert(std::move(item));
+}
