@@ -1,12 +1,13 @@
 //
 // Created by Oyekunle Oloyede on 18/10/2020.
 //
+#include <cstddef>
 
 class MyLinkedList {
 public:
     /** Initialize your data structure here. */
     MyLinkedList()
-            : head{nullptr} {}
+            : head{nullptr}, size{} {}
 
     /** Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
     int get(int index) {
@@ -15,7 +16,9 @@ public:
 
     /** Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
     void addAtHead(int val) {
-
+        auto newNode = new LinkedListNode(val, head);
+        head = newNode;
+        ++size;
     }
 
     /** Append a node of value val to the last element of the linked list. */
@@ -43,6 +46,7 @@ private:
     };
 
     LinkedListNode *head;
+    std::size_t size;
 };
 
 /**
