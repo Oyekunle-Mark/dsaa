@@ -26,5 +26,4 @@ public:
     }
 };
 
-
 #endif //DSAA_HASH_H
