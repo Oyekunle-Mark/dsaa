@@ -7,7 +7,7 @@ class MyLinkedList {
 public:
     /** Initialize your data structure here. */
     MyLinkedList()
-            : head{nullptr}, size{} {}
+            : head{nullptr}, tail{nullptr}, size{} {}
 
     /** Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
     int get(int index) {
@@ -18,17 +18,50 @@ public:
     void addAtHead(int val) {
         auto newNode = new LinkedListNode(val, head);
         head = newNode;
+
+        if (!size)
+            tail = newNode;
+
         ++size;
     }
 
     /** Append a node of value val to the last element of the linked list. */
     void addAtTail(int val) {
+        auto newNode = new LinkedListNode(val);
 
+        if (!size) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            tail->next = newNode;
+            tail = newNode;
+        }
+
+        ++size;
     }
 
     /** Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
     void addAtIndex(int index, int val) {
+        if (index > size)
+            return;
 
+        if (index == size)
+            addAtTail(val);
+
+        if (index == 0)
+            addAtHead(val);
+
+        auto currentNode = head;
+        std::size_t currentIndex{};
+
+        while (currentNode != nullptr) {
+            if (++currentIndex == index) {
+                auto newNode = new LinkedListNode(val, currentNode->next);
+                currentNode->next = newNode;
+            }
+
+            currentNode = currentNode->next;
+        }
     }
 
     /** Delete the index-th node in the linked list, if the index is valid. */
@@ -46,6 +79,7 @@ private:
     };
 
     LinkedListNode *head;
+    LinkedListNode *tail;
     std::size_t size;
 };
 
