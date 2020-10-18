@@ -11,7 +11,18 @@ public:
 
     /** Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
     int get(int index) {
+        if (index >= size)
+            return -1;
 
+        auto currentNode = head;
+        int currentIndex = 0;
+
+        while (currentNode != nullptr) {
+            if (currentIndex == index)
+                return currentNode->value;
+
+            currentNode = currentNode->next;
+        }
     }
 
     /** Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
@@ -45,19 +56,24 @@ public:
         if (index > size)
             return;
 
-        if (index == size)
+        if (index == size) {
             addAtTail(val);
+            return;
+        }
 
-        if (index == 0)
+        if (index == 1) {
             addAtHead(val);
+            return;
+        }
 
         auto currentNode = head;
-        std::size_t currentIndex{};
+        int currentIndex = 0;
 
         while (currentNode != nullptr) {
             if (++currentIndex == index) {
                 auto newNode = new LinkedListNode(val, currentNode->next);
                 currentNode->next = newNode;
+                return;
             }
 
             currentNode = currentNode->next;
@@ -66,7 +82,30 @@ public:
 
     /** Delete the index-th node in the linked list, if the index is valid. */
     void deleteAtIndex(int index) {
+        if (size == 0 || index >= size)
+            return;
 
+        if (index == 0) {
+            head = head->next;
+            return;
+        }
+
+        auto currentNode = head;
+        int currentIndex = 0;
+
+        while (currentNode != nullptr) {
+            if (currentIndex == index) {
+                if (index == size - 1)
+                    currentNode->next = nullptr;
+                else
+                    currentNode->next = currentNode->next->next;
+
+                return;
+            }
+
+            currentNode = currentNode->next;
+            ++currentIndex;
+        }
     }
 
 private:
