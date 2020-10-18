@@ -29,7 +29,7 @@ private:
 
     void rehash();
 
-    size_t myHash(const HashedObj &item) const;
+    std::size_t myHash(const HashedObj &item) const;
 };
 
 
