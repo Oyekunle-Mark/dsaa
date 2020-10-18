@@ -6,6 +6,7 @@
 #define DSAA_HASH_H
 
 #include <string>
+#include "Employee.h"
 
 template<typename Key>
 class hash {
@@ -23,6 +24,15 @@ public:
             hashVal += 37 * hashVal + ch;
 
         return hashVal;
+    }
+};
+
+template<>
+class hash<Employee> {
+public:
+    std::size_t operator()(const Employee &key) const {
+        static hash<std::string> hashFunction{};
+        return hashFunction(key.getName());
     }
 };
 
