@@ -77,6 +77,7 @@ public:
             if (++currentIndex == index) {
                 auto newNode = new LinkedListNode(val, currentNode->next);
                 currentNode->next = newNode;
+                ++size;
                 return;
             }
 
@@ -91,11 +92,13 @@ public:
 
         if (index == 0) {
             head = head->next;
+            --size;
             return;
         }
 
         auto currentNode = head;
         int currentIndex = 0;
+        auto prev = head;
 
         while (currentNode != nullptr) {
             if (currentIndex == index) {
@@ -103,10 +106,13 @@ public:
                     currentNode->next = nullptr;
                 else
                     currentNode->next = currentNode->next->next;
+//                prev->next = currentNode->next;
+                --size;
 
                 return;
             }
 
+            prev = head;
             currentNode = currentNode->next;
             ++currentIndex;
         }
