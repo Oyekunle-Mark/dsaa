@@ -28,6 +28,7 @@ int main() {
     myLinkedList.addAtHead(4);
     myLinkedList.addAtIndex(5, 0);
     myLinkedList.addAtHead(6);
+    myLinkedList.print();
 
     return 0;
 }

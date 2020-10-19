@@ -26,7 +26,7 @@ public:
             ++currentIndex;
         }
 
-        return currentNode->value;
+        return currentNode == nullptr ? -1 : currentNode->value;
     }
 
     /** Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
@@ -65,10 +65,10 @@ public:
             return;
         }
 
-//        if (index == 1) {
-//            addAtHead(val);
-//            return;
-//        }
+        if (index == 0) {
+            addAtHead(val);
+            return;
+        }
 
         auto currentNode = head;
         int currentIndex = 0;
@@ -103,16 +103,15 @@ public:
         while (currentNode != nullptr) {
             if (currentIndex == index) {
                 if (index == size - 1)
-                    currentNode->next = nullptr;
-                else
-                    currentNode->next = currentNode->next->next;
-//                prev->next = currentNode->next;
+                    tail = prev;
+
+                prev->next = currentNode->next;
                 --size;
 
                 return;
             }
 
-            prev = head;
+            prev = currentNode;
             currentNode = currentNode->next;
             ++currentIndex;
         }
@@ -135,7 +134,7 @@ private:
         int value;
         LinkedListNode *next;
 
-        LinkedListNode(int value, LinkedListNode *next = nullptr)
+        explicit LinkedListNode(int value, LinkedListNode *next = nullptr)
                 : value{value}, next{next} {}
     };
 
