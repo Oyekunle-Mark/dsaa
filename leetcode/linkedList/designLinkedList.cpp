@@ -12,29 +12,29 @@ public:
 
     /** Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
     int get(int index) {
-        if (index >= size)
+        if (index >= size) // if index exceeds list length
             return -1;
 
         auto currentNode = head;
         int currentIndex = 0;
 
         while (currentNode != nullptr) {
-            if (currentIndex == index)
+            if (currentIndex == index) // break at index
                 break;
 
             currentNode = currentNode->next;
             ++currentIndex;
         }
 
-        return currentNode == nullptr ? -1 : currentNode->value;
+        return currentNode->value;
     }
 
     /** Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
     void addAtHead(int val) {
-        auto newNode = new LinkedListNode(val, head);
-        head = newNode;
+        auto newNode = new LinkedListNode(val, head); // create new node with current head as next
+        head = newNode; // point head at new node
 
-        if (!size)
+        if (!size) // if this the only node they both head and tail should point at the same node
             tail = newNode;
 
         ++size;
@@ -44,10 +44,10 @@ public:
     void addAtTail(int val) {
         auto newNode = new LinkedListNode(val);
 
-        if (!size) {
+        if (!size) { // if this the only node they both head and tail should point at the same node
             head = newNode;
             tail = newNode;
-        } else {
+        } else { // otherwise, point current tail's next to new node and point tail to new node
             tail->next = newNode;
             tail = newNode;
         }
@@ -57,15 +57,15 @@ public:
 
     /** Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
     void addAtIndex(int index, int val) {
-        if (index > size)
+        if (index > size) // index is greater than length
             return;
 
-        if (index == size) {
+        if (index == size) { // index is equal to length
             addAtTail(val);
             return;
         }
 
-        if (index == 0) {
+        if (index == 0) { // index zero inserts at head
             addAtHead(val);
             return;
         }
@@ -74,9 +74,10 @@ public:
         int currentIndex = 0;
 
         while (currentNode != nullptr) {
-            if (++currentIndex == index) {
-                auto newNode = new LinkedListNode(val, currentNode->next);
-                currentNode->next = newNode;
+            if (++currentIndex == index) { // is the next index the target index
+                auto newNode = new LinkedListNode(val,
+                                                  currentNode->next); // create new node with present index node as next
+                currentNode->next = newNode; // point previous index node's next to new node
                 ++size;
                 return;
             }
@@ -87,10 +88,10 @@ public:
 
     /** Delete the index-th node in the linked list, if the index is valid. */
     void deleteAtIndex(int index) {
-        if (size == 0 || index >= size)
+        if (size == 0 || index >= size) // is list empty or index overflows
             return;
 
-        if (index == 0) {
+        if (index == 0) { // delete at head
             head = head->next;
             --size;
             return;
@@ -101,28 +102,28 @@ public:
         auto prev = head;
 
         while (currentNode != nullptr) {
-            if (currentIndex == index) {
-                if (index == size - 1)
+            if (currentIndex == index) { // is target index
+                if (index == size - 1) // if is tail set tail to prev
                     tail = prev;
 
-                prev->next = currentNode->next;
+                prev->next = currentNode->next; // set previous next to current next deleting current node
                 --size;
 
                 return;
             }
 
-            prev = currentNode;
-            currentNode = currentNode->next;
+            prev = currentNode; // prev tract previous node
+            currentNode = currentNode->next; // move current pointer to next node
             ++currentIndex;
         }
     }
 
+    /** Prints all the node in the linked list */
     void print() const {
         auto currentNode = head;
 
         while (currentNode != nullptr) {
             std::cout << currentNode->value << ' ';
-
             currentNode = currentNode->next;
         }
 
@@ -130,6 +131,9 @@ public:
     }
 
 private:
+    /**
+     * Struct representing a linked list node
+     */
     struct LinkedListNode {
         int value;
         LinkedListNode *next;
