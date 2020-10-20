@@ -27,9 +27,9 @@ private:
 
 public:
     ListNode *removeElements(ListNode *head, int val) {
-        if (!head) return head;
+        if (!head) return head; // if list is empty
 
-        while (head && head->val == val)
+        while (head && head->val == val) // while head value is to be deleted
             head = head->next;
 
         auto currentNode = head;
