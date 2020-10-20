@@ -1,10 +1,7 @@
 //
 // Created by Oyekunle Oloyede on 20/10/2020.
 //
-
-//
-// Created by Oyekunle Oloyede on 20/10/2020.
-//
+#include <unordered_set>
 
 /**
  * Definition for singly-linked list.
@@ -25,7 +22,20 @@ private:
     };
 
 public:
-    ListNode *detectCycle(ListNode *head) {
+    static ListNode *detectCycle(ListNode *head) {
+        auto currentNode = head;
+        std::unordered_set<ListNode *> nodeStore{};
+        nodeStore.insert(head);
 
+        while (currentNode) {
+            currentNode = currentNode->next;
+
+            if (nodeStore.count(currentNode))
+                return currentNode;
+
+            nodeStore.insert(currentNode);
+        }
+
+        return nullptr;
     }
 };
