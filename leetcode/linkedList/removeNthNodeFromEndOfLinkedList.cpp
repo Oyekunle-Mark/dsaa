@@ -27,6 +27,30 @@ private:
 
 public:
     static ListNode *removeNthFromEnd(ListNode *head, int n) {
+        int listLength{};
+        auto currentNode = head;
+
+        while (currentNode) {
+            currentNode = currentNode->next;
+            ++listLength;
+        }
+
+        int indexToDelete = listLength - n;
+
+        if (!indexToDelete) return head->next; // delete at head
+
+        int currentIndex = 0;
+        currentNode = head;
+
+        while (currentNode) {
+            if (++currentIndex == indexToDelete) { // if next index is to be deleted
+                currentNode->next = currentNode->next->next;
+                return head;
+            }
+
+            currentNode = currentNode->next;
+        }
+
         return nullptr;
     }
 };
