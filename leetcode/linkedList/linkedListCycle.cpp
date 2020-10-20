@@ -21,7 +21,18 @@ private:
     };
 
 public:
-    bool hasCycle(ListNode *head) {
+    static bool hasCycle(ListNode *head) {
+        auto slowPointer = head;
+        auto fastPointer = head;
 
+        while (slowPointer && fastPointer && fastPointer->next) {
+            slowPointer = slowPointer->next;
+            fastPointer = fastPointer->next->next;
+
+            if (slowPointer == fastPointer)
+                return true;
+        }
+
+        return false;
     }
 };
