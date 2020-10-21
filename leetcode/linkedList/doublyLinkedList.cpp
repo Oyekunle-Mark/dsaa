@@ -50,16 +50,16 @@ public:
     }
 
     /** Prints all the node in the linked list */
-//    void print() const {
-//        auto currentNode = head;
-//
-//        while (currentNode != nullptr) {
-//            std::cout << currentNode->value << ' ';
-//            currentNode = currentNode->next;
-//        }
-//
-//        std::cout << std::endl;
-//    }
+    void print() const {
+        auto currentNode = head;
+
+        while (currentNode != nullptr) {
+            std::cout << currentNode->value << ' ';
+            currentNode = currentNode->next;
+        }
+
+        std::cout << std::endl;
+    }
 
 private:
     /**
