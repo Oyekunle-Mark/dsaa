@@ -30,22 +30,28 @@ public:
     }
 
     /** Prints all the node in the linked list */
-    void print() const {
-        auto currentNode = head;
-
-        while (currentNode != nullptr) {
-            std::cout << currentNode->value << ' ';
-            currentNode = currentNode->next;
-        }
-
-        std::cout << std::endl;
-    }
+//    void print() const {
+//        auto currentNode = head;
+//
+//        while (currentNode != nullptr) {
+//            std::cout << currentNode->value << ' ';
+//            currentNode = currentNode->next;
+//        }
+//
+//        std::cout << std::endl;
+//    }
 
 private:
     /**
      * Struct representing a linked list node
      */
     struct DoublyListNode {
+        int value;
+        DoublyListNode *prev;
+        DoublyListNode *next;
+
+        explicit DoublyListNode(int value, DoublyListNode *prev = nullptr, DoublyListNode *next = nullptr)
+                : value{value}, prev{prev}, next{next} {}
     };
 };
 
