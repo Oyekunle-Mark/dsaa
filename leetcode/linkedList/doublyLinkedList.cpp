@@ -10,7 +10,19 @@ public:
             : head{nullptr}, tail{nullptr}, length{} {}
 
     /** Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
-    int get(int index) {
+    int get(int index) const {
+        if (length == 0 || index >= length) return -1;
+
+        auto currentNode = head;
+        int currentIndex{};
+
+        while (currentNode) {
+            if (currentIndex == index)
+                return currentNode->value;
+
+            currentNode = currentNode->next;
+            ++currentIndex;
+        }
     }
 
     /** Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
@@ -118,6 +130,7 @@ public:
             if (currentIndex == index) {
                 currentNode->prev->next = currentNode->next;
                 currentNode->next->prev = currentNode->prev;
+                --length;
 
                 return;
             }
