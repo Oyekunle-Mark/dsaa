@@ -1,13 +1,13 @@
 //
 // Created by Oyekunle Oloyede on 21/10/2020.
 //
-#include <cstddef>
 #include <iostream>
 
 class MyLinkedList {
 public:
     /** Initialize your data structure here. */
-    MyLinkedList() {}
+    MyLinkedList()
+            : head{nullptr}, tail{nullptr}, length{} {}
 
     /** Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
     int get(int index) {
@@ -53,6 +53,10 @@ private:
         explicit DoublyListNode(int value, DoublyListNode *prev = nullptr, DoublyListNode *next = nullptr)
                 : value{value}, prev{prev}, next{next} {}
     };
+
+    DoublyListNode *head;
+    DoublyListNode *tail;
+    std::size_t length;
 };
 
 /**
