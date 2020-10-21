@@ -21,6 +21,7 @@ public:
             tail = newNode;
         } else {
             auto newNode = new DoublyListNode(val, nullptr, head);
+            head->prev = newNode;
             head = newNode;
         }
 
@@ -35,6 +36,7 @@ public:
             tail = newNode;
         } else {
             auto newNode = new DoublyListNode(val, tail);
+            tail->next = newNode;
             tail = newNode;
         }
 
@@ -43,6 +45,32 @@ public:
 
     /** Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
     void addAtIndex(int index, int val) {
+        if (index > length) return;
+
+        if (index == length) {
+            addAtTail(val);
+            return;
+        }
+
+        if (index == 0) {
+            addAtHead(val);
+            return;
+        }
+
+        auto currentNode = head;
+        int currentIndex{};
+
+        while (currentNode) {
+            if (++currentIndex == index) {
+                auto newNode = new DoublyListNode(val, currentNode, currentNode->next);
+                currentNode->next = newNode;
+                currentNode->next->prev = newNode;
+                ++length;
+                return;
+            }
+
+            currentNode = currentNode->next;
+        }
     }
 
     /** Delete the index-th node in the linked list, if the index is valid. */
