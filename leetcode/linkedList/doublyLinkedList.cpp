@@ -99,6 +99,32 @@ public:
 
     /** Delete the index-th node in the linked list, if the index is valid. */
     void deleteAtIndex(int index) {
+        if (!length || index >= length) return;
+
+        if (index == 0) {
+            deleteAtHead();
+            return;
+        }
+
+        if (index == length - 1) {
+            deleteAtTail();
+            return;
+        }
+
+        auto currentNode = head;
+        int currentIndex{};
+
+        while (currentNode) {
+            if (currentIndex == index) {
+                currentNode->prev->next = currentNode->next;
+                currentNode->next->prev = currentNode->prev;
+
+                return;
+            }
+
+            currentNode = currentNode->next;
+            ++index;
+        }
     }
 
     /** Prints all the node in the linked list */
