@@ -73,6 +73,30 @@ public:
         }
     }
 
+    void deleteAtHead() {
+        if (length == 1) {
+            head = nullptr;
+            tail = nullptr;
+        } else {
+            head = head->next;
+            head->prev = nullptr;
+        }
+
+        --length;
+    }
+
+    void deleteAtTail() {
+        if (length == 1) {
+            head = nullptr;
+            tail = nullptr;
+        } else {
+            tail = tail->prev;
+            tail->next = nullptr;
+        }
+
+        --length;
+    }
+
     /** Delete the index-th node in the linked list, if the index is valid. */
     void deleteAtIndex(int index) {
     }
