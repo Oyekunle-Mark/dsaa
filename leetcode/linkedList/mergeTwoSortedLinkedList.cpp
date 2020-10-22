@@ -34,7 +34,6 @@ public:
         auto currentL2 = l2;
         ListNode *newHead{};
         ListNode *currentNode{};
-        int currentIndex{};
 
         if (currentL1->val <= currentL2->val) {
             newHead = new ListNode(currentL1->val);
