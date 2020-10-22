@@ -148,9 +148,23 @@ public:
 
         std::cout << "NULL<->";
 
-        while (currentNode != nullptr) {
+        while (currentNode) {
             std::cout << currentNode->value << "<->";
             currentNode = currentNode->next;
+        }
+
+        std::cout << "NULL" << std::endl;
+    }
+
+    /** Prints all the node in the linked list backward */
+    void printReverse() const {
+        auto currentNode = tail;
+
+        std::cout << "NULL<->";
+
+        while (currentNode) {
+            std::cout << currentNode->value << "<->";
+            currentNode = currentNode->prev;
         }
 
         std::cout << "NULL" << std::endl;
