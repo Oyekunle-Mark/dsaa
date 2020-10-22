@@ -77,8 +77,8 @@ public:
         while (currentNode) {
             if (++currentIndex == index) {
                 auto newNode = new DoublyListNode(val, currentNode, currentNode->next);
-                currentNode->next = newNode;
                 currentNode->next->prev = newNode;
+                currentNode->next = newNode;
                 ++length;
                 return;
             }
