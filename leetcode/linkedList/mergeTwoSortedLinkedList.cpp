@@ -27,8 +27,8 @@ private:
 
 public:
     ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
-        if (l1 == nullptr) return l2;
-        if (l2 == nullptr) return l1;
+        if (l1 == nullptr) return l2; // empty l1
+        if (l2 == nullptr) return l1; // empty l2
 
         auto currentL1 = l1;
         auto currentL2 = l2;
