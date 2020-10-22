@@ -18,11 +18,13 @@ public:
 
         while (currentNode) {
             if (currentIndex == index)
-                return currentNode->value;
+                break;
 
             currentNode = currentNode->next;
             ++currentIndex;
         }
+
+        return currentNode->value;
     }
 
     /** Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
@@ -136,7 +138,7 @@ public:
             }
 
             currentNode = currentNode->next;
-            ++index;
+            ++currentIndex;
         }
     }
 
@@ -144,12 +146,14 @@ public:
     void print() const {
         auto currentNode = head;
 
+        std::cout << "NULL<->";
+
         while (currentNode != nullptr) {
-            std::cout << currentNode->value << ' ';
+            std::cout << currentNode->value << "<->";
             currentNode = currentNode->next;
         }
 
-        std::cout << std::endl;
+        std::cout << "NULL" << std::endl;
     }
 
 private:
