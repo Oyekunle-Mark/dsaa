@@ -36,7 +36,7 @@ public:
         ListNode *currentNode{};
         int currentIndex{};
 
-        if (currentL1->val >= currentL2->val) {
+        if (currentL1->val <= currentL2->val) {
             newHead = new ListNode(currentL1->val);
             currentL1 = currentL1->next;
         } else {
@@ -47,7 +47,7 @@ public:
         currentNode = newHead;
 
         while (currentL1 && currentL2) {
-            if (currentL1->val >= currentL2->val) {
+            if (currentL1->val <= currentL2->val) {
                 auto newNode = new ListNode(currentL1->val);
                 currentNode->next = newNode;
                 currentNode = newNode;
@@ -79,15 +79,5 @@ public:
         }
 
         return newHead;
-    }
-
-    void insertAfter(ListNode *node, ListNode *nextNode) {
-        if (node->next == nullptr) {
-            node->next = nextNode;
-            nextNode->next = nullptr;
-        } else {
-            nextNode->next = node->next;
-            node->next = nextNode;
-        }
     }
 };
