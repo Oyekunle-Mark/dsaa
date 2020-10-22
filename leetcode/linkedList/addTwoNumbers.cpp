@@ -46,8 +46,20 @@ public:
 
         std::string sum = std::to_string(std::stoi(l1ToString) + std::stoi(l2ToString));
 
-        for (auto c : sum) {
+        ListNode *newHead{};
+        ListNode *currentNode{};
 
+        for (int index{}; index < sum.length(); ++index) {
+            if (!index) {
+                newHead = new ListNode(std::stoi(std::string(1, sum.at(index))));
+                currentNode = newHead;
+            } else {
+                auto newNode = new ListNode(std::stoi(std::string(1, sum.at(index))));
+                currentNode->next = newNode;
+                currentNode = newNode;
+            }
         }
+
+        return newHead;
     }
 };
