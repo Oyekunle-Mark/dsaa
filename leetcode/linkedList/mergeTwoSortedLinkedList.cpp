@@ -29,4 +29,14 @@ public:
     ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
 
     }
+
+    void insertAfter(ListNode *node, ListNode *nextNode) {
+        if (node->next == nullptr) {
+            node->next = nextNode;
+            nextNode->next = nullptr;
+        } else {
+            nextNode->next = node->next;
+            node->next = nextNode;
+        }
+    }
 };
