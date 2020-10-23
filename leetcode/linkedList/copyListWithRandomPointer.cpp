@@ -34,6 +34,40 @@ private:
 
 public:
     Node *copyRandomList(Node *head) {
+        if (head == nullptr) return head;
 
+        auto currentNode = head;
+
+        while (currentNode) {
+            auto nextNode = currentNode->next;
+
+            auto newNode = new Node(currentNode->val);
+            newNode->next = nextNode;
+            currentNode->next = newNode;
+            currentNode = nextNode;
+        }
+
+        auto prevNode = head;
+        auto nextNode = head->next;
+        head = nextNode;
+
+        while (prevNode) {
+            if (prevNode->random)
+                nextNode->random = prevNode->random->next;
+
+            auto prevPrev = prevNode;
+            prevNode = prevNode->next->next;
+            prevPrev->next = prevNode;
+
+            if (prevNode == nullptr)
+                break;
+
+            auto prevNext = nextNode;
+//            nextNode->next = nextNode->next->next;
+            nextNode = nextNode->next->next;
+            prevNext->next = nextNode;
+        }
+
+        return head;
     }
 };
