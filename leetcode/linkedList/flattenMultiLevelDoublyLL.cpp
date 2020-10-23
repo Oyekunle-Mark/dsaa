@@ -36,6 +36,7 @@ public:
                 currentNode->next = currentNode->child;
                 currentNode->child->prev = currentNode;
                 auto newChildTail = mergeChildren(currentNode->child);
+                currentNode->child = nullptr;
 
                 if (nextNode == nullptr) {
                     newChildTail->next = nextNode;
@@ -70,11 +71,10 @@ public:
                 currentHead->next = currentHead->child;
                 currentHead->child->prev = currentHead;
                 auto newChildTail = mergeChildren(currentHead->child);
+                currentHead->child = nullptr;
 
-                if (nextNode == nullptr) {
-                    newChildTail->next = nextNode;
-                    break;
-                }
+                if (nextNode == nullptr)
+                    return newChildTail;
 
                 newChildTail->next = nextNode;
                 nextNode->prev = newChildTail;
