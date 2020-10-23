@@ -1,6 +1,8 @@
 //
 // Created by Oyekunle Oloyede on 23/10/2020.
 //
+#include <map>
+
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -26,6 +28,35 @@ private:
 
 public:
     ListNode *rotateRight(ListNode *head, int k) {
+        if (head == nullptr || head->next == nullptr) return head;
 
+        std::map<ListNode *, ListNode *> nodeToPrevMap{};
+
+        auto prevNode = head;
+        auto currentNode = head->next;
+        nodeToPrevMap.insert({head, nullptr});
+        ListNode *tail{};
+
+        while (currentNode) {
+            nodeToPrevMap.insert({currentNode, prevNode});
+
+            prevNode = currentNode;
+            currentNode = currentNode->next;
+
+            if (currentNode == nullptr)
+                tail = prevNode;
+        }
+
+        while (k--) {
+            tail->next = head;
+            nodeToPrevMap.at(head) = tail;
+            head = tail;
+            auto newTail = nodeToPrevMap.at(tail);
+            nodeToPrevMap.at(tail) = nullptr;
+            tail = newTail;
+            newTail->next = nullptr;
+        }
+
+        return head;
     }
 };
