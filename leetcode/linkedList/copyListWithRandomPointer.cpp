@@ -52,19 +52,26 @@ public:
         currentNode = head; // track current node
 
         if (currentNode->random) // if current node has a random pointer
-            newHead->random = nodeMap.at(currentNode->random); // se
-        if (currentNode->next)
-            newHead->next = nodeMap.at(currentNode->next);
-        currentNode = currentNode->next;
-        auto currentNew = newHead->next;
+            newHead->random = nodeMap.at(
+                    currentNode->random); // set new head random pointer to the copy of head node random pointer
 
-        while (currentNode) {
-            if (currentNode->random)
-                currentNew->random = nodeMap.at(currentNode->random);
-            if (currentNode->next)
-                currentNew->next = nodeMap.at(currentNode->next);
-            currentNode = currentNode->next;
-            currentNew = currentNew->next;
+        if (currentNode->next) // if current node has a next
+            newHead->next = nodeMap.at(currentNode->next); // set new head next pointer to the copy of head node next
+
+        currentNode = currentNode->next; // advance current node to the next node
+        auto currentNew = newHead->next; // advance current copy list node to the next copied node
+
+        while (currentNode) { // while there is node in the list
+            if (currentNode->random) // if current node has a random pointer
+                currentNew->random = nodeMap.at(
+                        currentNode->random); // set current copy list node's random pointer to the copy of the original list current node's random pointer
+
+            if (currentNode->next) // if current node has a next
+                currentNew->next = nodeMap.at(
+                        currentNode->next); // set current copy list node's next to the copy of the original list current node's next pointer
+
+            currentNode = currentNode->next; // advance current node of original list
+            currentNew = currentNew->next; // advance current node of the copy list
         }
 
         return newHead;
