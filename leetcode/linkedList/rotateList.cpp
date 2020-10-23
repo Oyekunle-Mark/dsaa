@@ -28,34 +28,21 @@ private:
 
 public:
     ListNode *rotateRight(ListNode *head, int k) {
-        if (head == nullptr || head->next == nullptr) return head;
+        if (head == nullptr || head->next == nullptr || !k) return head;
 
-        std::map<ListNode *, ListNode *> nodeToPrevMap{};
+        auto currentNode = head;
 
-        auto prevNode = head;
-        auto currentNode = head->next;
-        nodeToPrevMap.insert({head, nullptr});
-        ListNode *tail{};
-
-        while (currentNode) {
-            nodeToPrevMap.insert({currentNode, prevNode});
-
-            prevNode = currentNode;
+        while (currentNode)
             currentNode = currentNode->next;
 
-            if (currentNode == nullptr)
-                tail = prevNode;
-        }
+        currentNode->next = head;
+        currentNode = head;
 
-        while (k--) {
-            tail->next = head;
-            nodeToPrevMap.at(head) = tail;
-            head = tail;
-            auto newTail = nodeToPrevMap.at(tail);
-            nodeToPrevMap.at(tail) = nullptr;
-            tail = newTail;
-            newTail->next = nullptr;
-        }
+        for (int i{}; i < k; ++i)
+            currentNode = currentNode->next;
+
+        head = currentNode->next;
+        currentNode->next = nullptr;
 
         return head;
     }
