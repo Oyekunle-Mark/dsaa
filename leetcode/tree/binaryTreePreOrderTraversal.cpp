@@ -30,6 +30,23 @@ private:
 
 public:
     std::vector<int> preorderTraversal(TreeNode *root) {
+        std::vector<int> nodeValues{};
 
+        if (root == nullptr)
+            return nodeValues;
+
+        computePreorderPath(root, nodeValues);
+
+        return nodeValues;
+    }
+
+    void computePreorderPath(TreeNode *root, std::vector<int> &nodeValues) {
+        nodeValues.push_back(root->val);
+
+        if (root->left)
+            computePreorderPath(root->left, nodeValues);
+
+        if (root->right)
+            computePreorderPath(root->right, nodeValues);
     }
 };
