@@ -30,6 +30,23 @@ private:
 
 public:
     std::vector<int> postorderTraversal(TreeNode *root) {
+        std::vector<int> nodeValues{};
 
+        if (root == nullptr)
+            return nodeValues;
+
+        computePostOrderPath(root, nodeValues);
+
+        return nodeValues;
+    }
+
+    void computePostOrderPath(TreeNode *root, std::vector<int> &nodeValues) {
+        if (root->left)
+            computePostOrderPath(root->left, nodeValues);
+
+        if (root->right)
+            computePostOrderPath(root->right, nodeValues);
+
+        nodeValues.push_back(root->val);
     }
 };
