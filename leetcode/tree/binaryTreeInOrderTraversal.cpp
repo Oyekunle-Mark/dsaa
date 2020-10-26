@@ -30,6 +30,23 @@ private:
 
 public:
     std::vector<int> inorderTraversal(TreeNode *root) {
+        std::vector<int> nodeValues{};
 
+        if (root == nullptr)
+            return nodeValues;
+
+        computeInorderPath(root, nodeValues);
+
+        return nodeValues;
+    }
+
+    void computeInorderPath(TreeNode *root, std::vector<int> &nodeValues) {
+        if (root->left)
+            computeInorderPath(root->left, nodeValues);
+
+        nodeValues.push_back(root->val);
+
+        if (root->right)
+            computeInorderPath(root->right, nodeValues);
     }
 };
