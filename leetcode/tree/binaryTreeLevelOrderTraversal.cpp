@@ -35,13 +35,18 @@ public:
 
         for (int level = 1; level <= treeHeight; ++level) {
             std::vector<int> nodeVisitedAtThisLevel{};
-            visitTreeNodeAtLevel(root, level, nodeVisitedAtThisLevel);
+
+            appendNodeValueAtLevel(root, level, nodeVisitedAtThisLevel);
+
             levelOrder.push_back(nodeVisitedAtThisLevel);
         }
 
         return levelOrder;
     }
 
+    /**
+     * Computes the height of a tree.
+     */
     int findTreeHeight(TreeNode *root, int currentLevel = 0) {
         if (root == nullptr)
             return currentLevel;
@@ -52,19 +57,25 @@ public:
         return max(heightOfLeftSubtree, heightOfRightSubtree);
     }
 
+    /**
+     * Finds the maximum of two integers values.
+     */
     int max(int first, int second) {
         return first > second ? first : second;
     }
 
-    void visitTreeNodeAtLevel(TreeNode *root, int level, std::vector<int> &nodesVisited) {
+    /**
+     * Does a level order append of the values of the nodes at a level
+     */
+    void appendNodeValueAtLevel(TreeNode *root, int level, std::vector<int> &nodesVisited) {
         if (root == nullptr)
             return;
 
         if (level == 1)
             nodesVisited.push_back(root->val);
         else {
-            visitTreeNodeAtLevel(root->left, level - 1, nodesVisited);
-            visitTreeNodeAtLevel(root->right, level - 1, nodesVisited);
+            appendNodeValueAtLevel(root->left, level - 1, nodesVisited);
+            appendNodeValueAtLevel(root->right, level - 1, nodesVisited);
         }
     }
 };
