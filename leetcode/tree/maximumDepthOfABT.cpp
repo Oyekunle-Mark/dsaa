@@ -29,6 +29,16 @@ private:
 
 public:
     int maxDepth(TreeNode *root) {
+        return findDepth(root);
+    }
 
+    int findDepth(TreeNode *root, int level = 0) {
+        if (root == nullptr)
+            return level;
+
+        auto leftSubTreeDepth = findDepth(root->left, level + 1);
+        auto rightSubTreeDepth = findDepth(root->right, level + 1);
+
+        return leftSubTreeDepth > rightSubTreeDepth ? leftSubTreeDepth : rightSubTreeDepth;
     }
 };
