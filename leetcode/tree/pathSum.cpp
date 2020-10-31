@@ -36,10 +36,18 @@ public:
     }
 
     bool findPathSum(TreeNode *root, int target, int currentSum = 0) {
-        if (root == nullptr)
+        if (root->left == nullptr && root->right == nullptr)
             return currentSum == target;
 
-        return findPathSum(root->left, target, currentSum + root->val) ||
-               findPathSum(root->right, target, currentSum + root->val);
+        auto leftSubTreePathSumEquals = false;
+        auto rightSubTreePathSumEquals = false;
+
+        if (root->left)
+            leftSubTreePathSumEquals = findPathSum(root->left, target, currentSum + root->left->val);
+
+        if (root->right)
+            rightSubTreePathSumEquals = findPathSum(root->right, target, currentSum + root->right->val);
+
+        return leftSubTreePathSumEquals || rightSubTreePathSumEquals;
     }
 };
