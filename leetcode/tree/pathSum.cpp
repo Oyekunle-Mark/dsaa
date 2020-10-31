@@ -37,7 +37,7 @@ public:
 
     /**
      * Recursively add up the sum of the node values along the tree.
-     * Compares currentSum to target and returns result of comparison.
+     * At a leaf node, compares currentSum to target and returns result of comparison.
      */
     bool findPathSum(TreeNode *root, int target, int currentSum) {
         // base case. At leaf node, compare and return result of comparison
