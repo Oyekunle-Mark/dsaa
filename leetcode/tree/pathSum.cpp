@@ -29,6 +29,17 @@ private:
 
 public:
     bool hasPathSum(TreeNode *root, int sum) {
+        if (root == nullptr)
+            return false;
 
+        return findPathSum(root, sum);
+    }
+
+    bool findPathSum(TreeNode *root, int target, int currentSum = 0) {
+        if (root == nullptr)
+            return currentSum == target;
+
+        return findPathSum(root->left, target, currentSum + root->val) ||
+               findPathSum(root->right, target, currentSum + root->val);
     }
 };
