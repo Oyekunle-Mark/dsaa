@@ -27,6 +27,18 @@ private:
 
 public:
     ListNode *swapPairs(ListNode *head) {
+        if (head == nullptr || head->next == nullptr)
+            return head;
 
+        auto nextNode = head->next;
+        head->next = head->next->next;
+        nextNode->next = head;
+        head = nextNode;
+
+        auto nextSwappedHead = swapPairs(head->next->next);
+
+        head->next->next = nextSwappedHead;
+
+        return head;
     }
 };
