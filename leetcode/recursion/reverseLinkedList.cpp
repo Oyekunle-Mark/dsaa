@@ -33,6 +33,14 @@ public:
     }
 
     ListNode *recursivelyReverseList(ListNode *head, ListNode *oldHead) {
+        if (oldHead->next == nullptr)
+            return head;
 
+        auto newHead = oldHead->next;
+        oldHead->next = oldHead->next->next;
+        newHead->next = head;
+        head = newHead;
+
+        return recursivelyReverseList(head, oldHead);
     }
 };
