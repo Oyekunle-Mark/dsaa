@@ -28,7 +28,13 @@ f(i,j)=1 where j=1 or j=i
 class Solution {
 public:
     std::vector<int> getRow(int rowIndex) {
+        std::vector<int> triangleRow{};
+        int columnIndex = 0;
 
+        while (columnIndex <= rowIndex)
+            triangleRow.push_back(getPascalNumber(rowIndex, columnIndex++));
+
+        return triangleRow;
     }
 
     int getPascalNumber(int row, int column) {
