@@ -28,6 +28,15 @@ private:
 
 public:
     TreeNode *searchBST(TreeNode *root, int val) {
+        if (root == nullptr)
+            return nullptr;
 
+        if (root->val == val)
+            return root;
+
+        auto leftSubTreeSearchResult = searchBST(root->left, val);
+        auto rightSubTreeSearchResult = searchBST(root->right, val);
+
+        return leftSubTreeSearchResult == nullptr ? rightSubTreeSearchResult : leftSubTreeSearchResult;
     }
 };
