@@ -30,4 +30,11 @@ public:
     std::vector<int> getRow(int rowIndex) {
 
     }
+
+    int getPascalNumber(int row, int column) {
+        if (column == 0 || row == column)
+            return 1;
+
+        return getPascalNumber(row - 1, column - 1) + getPascalNumber(row - 1, column);
+    }
 };
