@@ -27,16 +27,20 @@ private:
 
 public:
     ListNode *swapPairs(ListNode *head) {
+        // base case
         if (head == nullptr || head->next == nullptr)
             return head;
 
+        // swap head and next node
         auto nextNode = head->next;
         head->next = head->next->next;
         nextNode->next = head;
         head = nextNode;
 
+        // call swapPairs recursively with head->next->next
         auto nextSwappedHead = swapPairs(head->next->next);
 
+        // chain the head of the next swapped to the current list
         head->next->next = nextSwappedHead;
 
         return head;
