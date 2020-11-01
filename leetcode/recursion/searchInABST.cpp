@@ -28,15 +28,16 @@ private:
 
 public:
     TreeNode *searchBST(TreeNode *root, int val) {
-        if (root == nullptr)
+        if (root == nullptr) // if root is a null pointer
             return nullptr;
 
-        if (root->val == val)
+        if (root->val == val) // if root node value is val
             return root;
 
-        auto leftSubTreeSearchResult = searchBST(root->left, val);
-        auto rightSubTreeSearchResult = searchBST(root->right, val);
+        auto leftSubTreeSearchResult = searchBST(root->left, val); // recursively search left sub tree
+        auto rightSubTreeSearchResult = searchBST(root->right, val); // recursively search right sub tree
 
+        // return a non-null pointer is one is found or null pointer otherwise
         return leftSubTreeSearchResult == nullptr ? rightSubTreeSearchResult : leftSubTreeSearchResult;
     }
 };
