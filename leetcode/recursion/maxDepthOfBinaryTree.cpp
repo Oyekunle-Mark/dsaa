@@ -28,7 +28,13 @@ private:
     };
 
 public:
-    int maxDepth(TreeNode *root) {
+    int maxDepth(TreeNode *root, int level = 0) {
+        if (root == nullptr)
+            return level;
 
+        auto maxLeftSubTreeDepth = maxDepth(root->left, level + 1);
+        auto maxRightSubTreeDepth = maxDepth(root->right, level + 1);
+
+        return maxLeftSubTreeDepth > maxRightSubTreeDepth ? maxLeftSubTreeDepth : maxRightSubTreeDepth;
     }
 };
