@@ -10,7 +10,14 @@ public:
 
         bool isPositivePower = n > 0;
 
-        auto newN = isPositivePower ? n - 1 : n + 1;
-        return isPositivePower ? x * myPow(x, newN) : 1 / x * myPow(x, newN);
+        x = isPositivePower ? x : 1 / x;
+        auto result = 1.00000;
+
+        while (n != 0) {
+            result *= x;
+            n = isPositivePower ? n - 1 : n + 1;
+        }
+
+        return result;
     }
 };
