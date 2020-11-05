@@ -10,7 +10,7 @@ public:
     }
 
     int buildGrammarAndFindKthSymbol(int n, int k, const std::string &grammar) {
-        if (n == 0)
+        if (n == 0 || grammar.size() > k)
             return grammar.at(k - 1) - 48;
 
         std::string newGrammar{};
