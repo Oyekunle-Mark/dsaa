@@ -6,7 +6,14 @@
 class Solution {
 public:
     std::vector<int> sortArray(std::vector<int> &nums) {
+        if (nums.size() <= 1)
+            return nums;
 
+        int pivot = static_cast<int>(nums.size()) / 2;
+        auto left = std::vector<int>(nums.begin(), nums.begin() + pivot);
+        auto right = std::vector<int>(nums.begin() + pivot, nums.end());
+
+        return merge(sortArray(left), sortArray(right));
     }
 
     std::vector<int> merge(const std::vector<int> &right, const std::vector<int> &left) {
