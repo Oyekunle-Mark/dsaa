@@ -25,17 +25,18 @@ public:
 class Solution {
 public:
     int maxDepth(Node *root, int depth = 0) {
-        if (root == nullptr)
+        if (root == nullptr) // when root is a null pointer
             return depth;
 
-        if (root->children.empty())
-            return depth + 1;
+        if (root->children.empty()) // if root is a leaf node
+            return depth + 1; // increment depth to count current level and return
 
         std::vector<int> subTreeDepths{};
 
-        for (auto node : root->children)
-            subTreeDepths.push_back(maxDepth(node, depth + 1));
+        for (auto node : root->children) // for all child nodes
+            subTreeDepths.push_back(maxDepth(node, depth +
+                                                   1)); // increment depth to count current level and call recursively find sub tree depth
 
-        return *std::max_element(subTreeDepths.begin(), subTreeDepths.end());
+        return *std::max_element(subTreeDepths.begin(), subTreeDepths.end()); // return the max depth of sub trees
     }
 };
