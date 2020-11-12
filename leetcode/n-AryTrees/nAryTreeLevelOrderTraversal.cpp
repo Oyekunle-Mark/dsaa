@@ -35,9 +35,22 @@ public:
 
         std::vector<int> subTreeLevels{};
 
-        for (auto node: root->children)
+        for (auto node : root->children)
             subTreeLevels.push_back(findNAryTreeHeight(node, level + 1));
 
         return *std::max_element(subTreeLevels.begin(), subTreeLevels.end());
+    }
+
+    void addNodesAtLevel(Node *root, std::vector<int> &nodes, int targetLevel, int currentLevel = 1) {
+        if (root == nullptr)
+            return;
+
+        if (targetLevel == currentLevel) {
+            nodes.push_back(root->val);
+            return;
+        }
+
+        for (auto node : root->children)
+            addNodesAtLevel(node, nodes, targetLevel, currentLevel + 1);
     }
 };
