@@ -26,7 +26,16 @@ public:
 class Solution {
 public:
     std::vector<std::vector<int>> levelOrder(Node *root) {
+        std::vector<std::vector<int>> levelOrderNodes{};
+        auto maxHeightOfTree = findNAryTreeHeight(root);
 
+        for (int level = 1; level <= maxHeightOfTree; ++level) {
+            std::vector<int> levelNodes{};
+            addNodesAtLevel(root, levelNodes, level);
+            levelOrderNodes.push_back(levelNodes);
+        }
+
+        return levelOrderNodes;
     }
 
     int findNAryTreeHeight(Node *root, int level = 0) {
