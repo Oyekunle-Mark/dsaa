@@ -29,5 +29,16 @@ public:
 class Solution {
 public:
     std::vector<int> postorder(Node *root) {
+
+    }
+
+    void buildPostorderNodes(Node *root, std::vector<int> &nodes) {
+        if (root == nullptr)
+            return;
+
+        for (auto node: root->children)
+            buildPostorderNodes(node, nodes);
+
+        nodes.push_back(root->val);
     }
 };
