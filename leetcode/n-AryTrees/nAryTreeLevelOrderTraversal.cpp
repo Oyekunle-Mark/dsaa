@@ -38,11 +38,11 @@ public:
     }
 
     int findNAryTreeHeight(Node *root, int level = 0) {
-        if (root == nullptr)
+        if (root == nullptr) // for empty tree
             return level;
 
-        if (root->children.empty())
-            return level + 1;
+        if (root->children.empty()) // if current node has no children
+            return level + 1; // count it's level and return
 
         std::vector<int> subTreeLevels{};
 
