@@ -29,7 +29,11 @@ public:
 class Solution {
 public:
     std::vector<int> postorder(Node *root) {
+        std::vector<int> nodes{};
 
+        buildPostorderNodes(root, nodes);
+
+        return nodes;
     }
 
     void buildPostorderNodes(Node *root, std::vector<int> &nodes) {
