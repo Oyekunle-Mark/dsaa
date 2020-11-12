@@ -27,4 +27,14 @@ public:
     std::vector<int> preorder(Node *root) {
 
     }
+
+    void buildPreorderNodes(Node *root, std::vector<int> &nodes) {
+        if (root == nullptr)
+            return;
+
+        nodes.push_back(root->val);
+
+        for (auto node: root->children)
+            buildPreorderNodes(node, nodes);
+    }
 };
