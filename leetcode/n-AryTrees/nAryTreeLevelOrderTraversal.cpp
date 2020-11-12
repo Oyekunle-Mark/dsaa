@@ -2,7 +2,6 @@
 // Created by Oyekunle Oloyede on 12/11/2020.
 //
 #include <vector>
-#include <algorithm>
 
 // Definition for a Node.
 class Node {
@@ -42,12 +41,22 @@ public:
         if (root == nullptr)
             return level;
 
+        if (root->children.empty())
+            return level + 1;
+
         std::vector<int> subTreeLevels{};
 
         for (auto node : root->children)
             subTreeLevels.push_back(findNAryTreeHeight(node, level + 1));
 
-        return *std::max_element(subTreeLevels.begin(), subTreeLevels.end());
+        int max = 0;
+
+        for (int i : subTreeLevels) {
+            if (i > max)
+                max = i;
+        }
+
+        return max;
     }
 
     void addNodesAtLevel(Node *root, std::vector<int> &nodes, int targetLevel, int currentLevel = 1) {
