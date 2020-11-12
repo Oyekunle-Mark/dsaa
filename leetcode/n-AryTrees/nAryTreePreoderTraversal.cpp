@@ -25,7 +25,11 @@ public:
 class Solution {
 public:
     std::vector<int> preorder(Node *root) {
+        std::vector<int> nodes{};
 
+        buildPreorderNodes(root, nodes);
+
+        return nodes;
     }
 
     void buildPreorderNodes(Node *root, std::vector<int> &nodes) {
