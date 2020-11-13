@@ -33,17 +33,17 @@ private:
 
 public:
     explicit BSTIterator(TreeNode *root) {
-
+        buildValues(root);
     }
 
     /** @return the next smallest number */
     int next() {
-
+        return nodeValues.at(currentIndex++);
     }
 
     /** @return whether we have a next smallest number */
     bool hasNext() {
-
+        return currentIndex < nodeValues.size();
     }
 
     /**
