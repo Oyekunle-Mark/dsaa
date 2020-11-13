@@ -50,9 +50,6 @@ public:
     */
 
     bool isValidBST(TreeNode *root) {
-        if (root == nullptr)
-            return true;
-
         std::vector<int> nodes{};
         performInorder(root, nodes);
 
@@ -60,6 +57,15 @@ public:
     }
 
     void performInorder(TreeNode *root, std::vector<int> &nodes) {
+        if (root == nullptr)
+            return;
 
+        if (root->left)
+            performInorder(root->left, nodes);
+
+        nodes.push_back(root->val);
+
+        if (root->right)
+            performInorder(root->right, nodes);
     }
 };
