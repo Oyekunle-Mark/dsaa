@@ -46,6 +46,9 @@ public:
 
     }
 
+    /*
+     * Build nodes values using inorder traversal
+     */
     void buildValues(TreeNode *root) {
         if (root == nullptr)
             return;
