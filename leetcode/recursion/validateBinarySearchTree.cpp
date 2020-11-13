@@ -33,6 +33,7 @@ public:
      * Efficient solution using O(1) space.
     TreeNode *prevNode = nullptr;
 
+    // Performs an inorder traversal and each node's value to the previous node. Uses O(1) space
     bool isValidBST(TreeNode *root) {
         if (root == nullptr)
             return true;
@@ -49,6 +50,10 @@ public:
     }
     */
 
+    /*
+     * Performing an inorder traversal on a bst and keeping track of its node's value
+     * If the node values are all sorted, then the bst is valid
+     */
     bool isValidBST(TreeNode *root) {
         std::vector<int> nodes{};
         performInorder(root, nodes);
