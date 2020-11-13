@@ -1,6 +1,7 @@
 //
 // Created by Oyekunle Oloyede on 13/11/2020.
 //
+#include <vector>
 
 /**
  * Definition for a binary tree node.
@@ -15,6 +16,9 @@
  */
 class BSTIterator {
 private:
+    std::vector<int> nodeValues{};
+    size_t currentIndex{};
+
     struct TreeNode {
         int val;
         TreeNode *left;
@@ -40,6 +44,19 @@ public:
     /** @return whether we have a next smallest number */
     bool hasNext() {
 
+    }
+
+    void buildValues(TreeNode *root) {
+        if (root == nullptr)
+            return;
+
+        if (root->left)
+            buildValues(root->left);
+
+        nodeValues.push_back(root->val);
+
+        if (root->right)
+            buildValues(root->right);
     }
 };
 
