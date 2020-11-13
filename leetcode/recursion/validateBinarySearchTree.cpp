@@ -1,6 +1,7 @@
 //
 // Created by Oyekunle Oloyede on 08/11/2020.
 //
+#include <vector>
 
 /**
  * Definition for a binary tree node.
@@ -28,6 +29,8 @@ private:
     };
 
 public:
+    /*
+     * Efficient solution using O(1) space.
     TreeNode *prevNode = nullptr;
 
     bool isValidBST(TreeNode *root) {
@@ -43,5 +46,14 @@ public:
         prevNode = root;
 
         return isValidBST(root->right);
+    }
+    */
+
+    bool isValidBST(TreeNode *root) {
+
+    }
+
+    void performInorder(TreeNode *root, std::vector<int>& nodes) {
+
     }
 };
