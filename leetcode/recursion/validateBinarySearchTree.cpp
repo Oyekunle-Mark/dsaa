@@ -29,7 +29,7 @@ private:
     };
 
 public:
-    /*
+    /**
      * Efficient solution using O(1) space.
     TreeNode *prevNode = nullptr;
 
@@ -50,7 +50,7 @@ public:
     }
     */
 
-    /*
+    /**
      * Performing an inorder traversal on a bst and keeping track of its node's value
      * If the node values are all sorted, then the bst is valid
      */
