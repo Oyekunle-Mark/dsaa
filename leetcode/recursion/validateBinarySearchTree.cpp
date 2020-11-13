@@ -53,7 +53,19 @@ public:
         std::vector<int> nodes{};
         performInorder(root, nodes);
 
-        return std::is_sorted(nodes.begin(), nodes.end());
+        if (nodes.empty())
+            return true;
+
+        auto min = nodes.at(0);
+
+        for (size_t index = 1; index < nodes.size(); ++index) {
+            if (nodes.at(index) <= min)
+                return false;
+
+            min = nodes.at(index);
+        }
+
+        return true;
     }
 
     void performInorder(TreeNode *root, std::vector<int> &nodes) {
