@@ -29,15 +29,15 @@ private:
 
 public:
     TreeNode *searchBST(TreeNode *root, int val) {
-        if (root == nullptr)
+        if (root == nullptr) // base case of nullptr
             return nullptr;
 
-        if (root->val == val)
+        if (root->val == val) // return root if target node
             return root;
 
-        if (val < root->val)
+        if (val < root->val) // if val is less than current node's val, continue to the left sub tree
             return searchBST(root->left, val);
 
-        return searchBST(root->right, val);
+        return searchBST(root->right, val); // otherwise, continue search in right sub tree
     }
 };
