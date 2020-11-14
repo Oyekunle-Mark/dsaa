@@ -18,6 +18,25 @@ private:
 
 public:
     TreeNode *insertIntoBST(TreeNode *root, int val) {
+        if (root == nullptr)
+            return new TreeNode(val);
 
+        insertIntoPlace(root, val);
+
+        return root;
+    }
+
+    void insertIntoPlace(TreeNode *root, int val) {
+        if (val < root->val) {
+            if (root->left == nullptr)
+                root->left = new TreeNode(val);
+            else
+                insertIntoBST(root->left, val);
+        } else {
+            if (root->right == nullptr)
+                root->right = new TreeNode(val);
+            else
+                insertIntoBST(root->right, val);
+        }
     }
 };
