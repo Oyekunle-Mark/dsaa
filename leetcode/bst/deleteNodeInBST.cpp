@@ -30,28 +30,49 @@ private:
 public:
     TreeNode *deleteNode(TreeNode *root, int key) {
         if (root == nullptr)
-            return nullptr;
-
-        auto targetNode = findTargetNode(root, key);
-
-        if (targetNode == nullptr)
             return root;
 
-        if (targetNode->left == nullptr && targetNode->right == nullptr) {
-            delete targetNode;
-            targetNode = nullptr;
-        } else if (targetNode->left == nullptr || targetNode->right == nullptr) {
-            auto childNode = targetNode->right == nullptr ? targetNode->left : targetNode->right;
-            delete targetNode;
-            targetNode = childNode;
-        } else {
-            TreeNode *successor{};
-            findInOrderSuccessor(root, successor, targetNode->val);
+        if (key < root->val)
+            root->left = deleteNode(root->left, key);
+        else if (key > root->val)
+            root->right = deleteNode(root->right, key);
+        else {
+            if (root->left == nullptr) {
+                auto temp = root->right;
+                delete root;
+                return temp;
+            } else if (root->right == nullptr) {
+                auto temp = root->left;
+                delete root;
+                return temp;
+            }
 
-            targetNode->val = successor->val;
-            delete successor;
-            successor = nullptr;
+            TreeNode *temp{};
+            findInOrderSuccessor(root, temp, root->val);
+            root->val = temp->val;
+            root->right = deleteNode(root, temp->val);
         }
+
+//        auto targetNode = findTargetNode(root, key);
+//
+//        if (targetNode == nullptr)
+//            return root;
+//
+//        if (targetNode->left == nullptr && targetNode->right == nullptr) {
+////            delete targetNode;
+//            targetNode = nullptr;
+//        } else if (targetNode->left == nullptr || targetNode->right == nullptr) {
+//            auto childNode = targetNode->right == nullptr ? targetNode->left : targetNode->right;
+//            delete targetNode;
+//            targetNode = childNode;
+//        } else {
+//            TreeNode *successor{};
+//            findInOrderSuccessor(root, successor, targetNode->val);
+//
+//            targetNode->val = successor->val;
+////            delete successor;
+//            successor = nullptr;
+//        }
 
         return root;
     }
