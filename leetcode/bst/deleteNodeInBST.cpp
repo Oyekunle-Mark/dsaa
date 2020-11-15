@@ -29,7 +29,8 @@ private:
 
 public:
     TreeNode *deleteNode(TreeNode *root, int key) {
-
+        if (root == nullptr)
+            return nullptr;
     }
 
     TreeNode *findMin(TreeNode *root) {
@@ -53,5 +54,17 @@ public:
                 successor = findMin(root->right);
         } else
             findInOrderSuccessor(root->right, successor, val);
+    }
+
+    TreeNode *findTargetNode(TreeNode *root, int val) {
+        if (root == nullptr)
+            return nullptr;
+
+        if (root->val == val)
+            return root;
+        else if (val < root->val)
+            return findTargetNode(root->left, val);
+
+        return findTargetNode(root->right, val);
     }
 };
