@@ -31,4 +31,11 @@ public:
     TreeNode *deleteNode(TreeNode *root, int key) {
 
     }
+
+    TreeNode *findMin(TreeNode *root) {
+        while (root->left)
+            root = root->left;
+
+        return root;
+    }
 };
