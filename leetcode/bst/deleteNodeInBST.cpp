@@ -29,7 +29,7 @@ private:
 
 public:
     TreeNode *deleteNode(TreeNode *root, int key) {
-        if (root == nullptr)
+        if (root == nullptr) // if tree is emptu
             return root;
 
         if (key < root->val)
@@ -37,6 +37,8 @@ public:
         else if (key > root->val)
             root->right = deleteNode(root->right, key);
         else {
+            // if there is one or no child
+            // remove node and update accordingly
             if (root->left == nullptr) {
                 auto temp = root->right;
                 delete root;
@@ -47,6 +49,8 @@ public:
                 return temp;
             }
 
+            // if there are two children, find the inorder successor by finding the minimum node in the right subtree
+            // update the node's value to it's inorder successor and recursively delete it's inorder successor
             auto temp = findMin(root->right);
             root->val = temp->val;
             root->right = deleteNode(root->right, temp->val);
