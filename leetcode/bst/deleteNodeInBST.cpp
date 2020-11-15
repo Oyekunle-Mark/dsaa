@@ -38,4 +38,20 @@ public:
 
         return root;
     }
+
+    void findInOrderSuccessor(TreeNode *root, TreeNode *&successor, int val) {
+        if (root == nullptr) {
+            successor = nullptr;
+            return;
+        }
+
+        if (val < root->val) {
+            successor = root;
+            findInOrderSuccessor(root->left, successor, val);
+        } else if (val == root->val) {
+            if (root->right)
+                successor = findMin(root->right);
+        } else
+            findInOrderSuccessor(root->right, successor, val);
+    }
 };
