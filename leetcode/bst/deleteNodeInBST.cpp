@@ -31,6 +31,29 @@ public:
     TreeNode *deleteNode(TreeNode *root, int key) {
         if (root == nullptr)
             return nullptr;
+
+        auto targetNode = findTargetNode(root, key);
+
+        if (targetNode == nullptr)
+            return root;
+
+        if (targetNode->left == nullptr && targetNode->right == nullptr) {
+            delete targetNode;
+            targetNode = nullptr;
+        } else if (targetNode->left == nullptr || targetNode->right == nullptr) {
+            auto childNode = targetNode->right == nullptr ? targetNode->left : targetNode->right;
+            delete targetNode;
+            targetNode = childNode;
+        } else {
+            TreeNode *successor{};
+            findInOrderSuccessor(root, successor, targetNode->val);
+
+            targetNode->val = successor->val;
+            delete successor;
+            successor = nullptr;
+        }
+
+        return root;
     }
 
     TreeNode *findMin(TreeNode *root) {
