@@ -13,11 +13,16 @@ private:
         explicit TreeNode(int val) : val(val), left(nullptr), right(nullptr) {}
     };
 
-    TreeNode *root{nullptr};
+    TreeNode *root;
+    int index;
 
 public:
     KthLargest(int k, std::vector<int> &nums) {
+        root = nullptr;
+        index = k;
 
+        for (int number : nums)
+            root = insert(root, number);
     }
 
     int add(int val) {
