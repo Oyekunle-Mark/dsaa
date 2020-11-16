@@ -13,6 +13,8 @@ private:
         explicit TreeNode(int val) : val(val), left(nullptr), right(nullptr) {}
     };
 
+    TreeNode *root{nullptr};
+
 public:
     KthLargest(int k, std::vector<int> &nums) {
 
@@ -20,6 +22,18 @@ public:
 
     int add(int val) {
 
+    }
+
+    TreeNode *insert(TreeNode *rootNode, int newVal) {
+        if (root == nullptr)
+            return new TreeNode(newVal);
+
+        if (newVal < rootNode->val)
+            rootNode->left = insert(rootNode->left, newVal);
+        else
+            rootNode->right = insert(rootNode->right, newVal);
+
+        return rootNode;
     }
 };
 
