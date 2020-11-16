@@ -4,6 +4,15 @@
 #include <vector>
 
 class KthLargest {
+private:
+    struct TreeNode {
+        int val;
+        TreeNode *left;
+        TreeNode *right;
+
+        explicit TreeNode(int val) : val(val), left(nullptr), right(nullptr) {}
+    };
+
 public:
     KthLargest(int k, std::vector<int> &nums) {
 
