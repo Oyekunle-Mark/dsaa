@@ -38,7 +38,16 @@ public:
 
     /** Returns if the word is in the trie. */
     bool search(std::string word) {
+        auto currentNode = root;
 
+        for (auto c : word) {
+            if (currentNode->children.find(c) == currentNode->children.end())
+                return false;
+
+            currentNode = currentNode->children.at(c);
+        }
+
+        return currentNode->isWord;
     }
 
     /** Returns if there is any word in the trie that starts with the given prefix. */
