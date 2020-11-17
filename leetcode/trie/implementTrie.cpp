@@ -15,12 +15,12 @@ private:
                 : prefix(pref), isWord(fullWord) {}
     };
 
-    TrieNode *root = new TrieNode("", false);
+    TrieNode *root;
 
 public:
     /** Initialize your data structure here. */
     Trie() {
-
+        root = new TrieNode("", false);
     }
 
     /** Inserts a word into the trie. */
