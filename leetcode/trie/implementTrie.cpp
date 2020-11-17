@@ -8,11 +8,10 @@ class Trie {
 private:
     struct TrieNode {
         std::unordered_map<char, TrieNode *> children{};
-        std::string prefix{};
         bool isWord;
 
-        explicit TrieNode(const std::string &pref, bool fullWord)
-                : prefix(pref), isWord(fullWord) {}
+        explicit TrieNode(bool isWord)
+                : isWord(isWord) {}
     };
 
     TrieNode *root;
@@ -20,12 +19,21 @@ private:
 public:
     /** Initialize your data structure here. */
     Trie() {
-        root = new TrieNode("", false);
+        root = new TrieNode(false);
     }
 
     /** Inserts a word into the trie. */
     void insert(std::string word) {
+        auto currentNode = root;
 
+        for (auto c : word) {
+            if (currentNode->children.find(c) == currentNode->children.end())
+                currentNode->children.insert({c, new TrieNode(false)});
+
+            currentNode = currentNode->children.at(c);
+        }
+
+        currentNode->isWord = true;
     }
 
     /** Returns if the word is in the trie. */
