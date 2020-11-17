@@ -52,7 +52,16 @@ public:
 
     /** Returns if there is any word in the trie that starts with the given prefix. */
     bool startsWith(std::string prefix) {
+        auto currentNode = root;
 
+        for (auto c : prefix) {
+            if (currentNode->children.find(c) == currentNode->children.end())
+                return false;
+
+            currentNode = currentNode->children.at(c);
+        }
+
+        return true;
     }
 };
 
