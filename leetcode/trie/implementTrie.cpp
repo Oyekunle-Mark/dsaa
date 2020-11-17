@@ -2,8 +2,21 @@
 // Created by Oyekunle Oloyede on 17/11/2020.
 //
 #include <string>
+#include <unordered_map>
 
 class Trie {
+private:
+    struct TrieNode {
+        std::unordered_map<char, TrieNode *> children{};
+        std::string prefix{};
+        bool isWord;
+
+        explicit TrieNode(const std::string &pref, bool fullWord)
+                : prefix(pref), isWord(fullWord) {}
+    };
+
+    TrieNode *root = new TrieNode("", false);
+
 public:
     /** Initialize your data structure here. */
     Trie() {
