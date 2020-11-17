@@ -27,13 +27,14 @@ public:
         auto currentNode = root;
 
         for (auto c : word) {
-            if (currentNode->children.find(c) == currentNode->children.end())
+            if (currentNode->children.find(c) ==
+                currentNode->children.end()) // if character is not in current node's children
                 currentNode->children.insert({c, new TrieNode(false)});
 
-            currentNode = currentNode->children.at(c);
+            currentNode = currentNode->children.at(c); // switch to the children of current character
         }
 
-        currentNode->isWord = true;
+        currentNode->isWord = true; // change the flag of last character in word to show it is a valid word
     }
 
     /** Returns if the word is in the trie. */
@@ -41,13 +42,14 @@ public:
         auto currentNode = root;
 
         for (auto c : word) {
-            if (currentNode->children.find(c) == currentNode->children.end())
-                return false;
+            if (currentNode->children.find(c) ==
+                currentNode->children.end()) // if current character cant be found in current node's children
+                return false; // trie does not contain word
 
             currentNode = currentNode->children.at(c);
         }
 
-        return currentNode->isWord;
+        return currentNode->isWord; // if the last last trie node representing word is flagged as a word
     }
 
     /** Returns if there is any word in the trie that starts with the given prefix. */
@@ -61,7 +63,7 @@ public:
             currentNode = currentNode->children.at(c);
         }
 
-        return true;
+        return true; // a trie node path is found to match prefix
     }
 };
 
