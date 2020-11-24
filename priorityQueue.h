@@ -12,6 +12,16 @@ class PriorityQueue {
 public:
     PriorityQueue() : items{std::vector<QueueItem>{}} {}
 
+    void swap(int index1, int index2);
+
+    void bubbleUp();
+
+    void insert(const QueueItem &item);
+
+    void bubbleDown();
+
+    const QueueItem &remove();
+
 private:
     std::vector<QueueItem> items;
 };
