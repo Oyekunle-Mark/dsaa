@@ -55,3 +55,14 @@ void MaxHeap::bubbleDown() {
         parentIndex = indexToSwap;
     }
 }
+
+int MaxHeap::remove() {
+    swap(0, items.size() - 1);
+    auto ret = items.back();
+    items.pop_back();
+
+    if (items.size() > 1)
+        bubbleDown();
+
+    return ret;
+}
