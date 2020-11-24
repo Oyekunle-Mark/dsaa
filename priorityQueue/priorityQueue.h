@@ -10,6 +10,10 @@
 #include <vector>
 #include <string>
 
+/**
+ * A priority queue class.
+ * Uses a min heap
+ */
 class PriorityQueue {
 private:
     struct QueueNode {
