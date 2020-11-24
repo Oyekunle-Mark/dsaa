@@ -39,14 +39,13 @@ void PriorityQueue::bubbleDown() {
         int rightChildIndex = (2 * parentIndex) + 2;
         int indexToSwap = -1;
 
-        if (leftChildIndex < items.size() && items.at(parentIndex) > items.at(leftChildIndex))
+        if (leftChildIndex < items.size() && items.at(leftChildIndex) < items.at(parentIndex))
             indexToSwap = leftChildIndex;
 
         if (rightChildIndex < items.size()) {
-            if ((items.at(parentIndex) > items.at(rightChildIndex) && indexToSwap != -1) ||
+            if ((items.at(rightChildIndex) < items.at(parentIndex) && indexToSwap == -1) ||
                 (items.at(rightChildIndex) < items.at(leftChildIndex) && indexToSwap != -1))
                 indexToSwap = rightChildIndex;
-
         }
 
         if (indexToSwap == -1)
