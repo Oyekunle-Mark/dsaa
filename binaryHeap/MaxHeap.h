@@ -5,6 +5,7 @@
 #ifndef DSAA_MAXHEAP_H
 #define DSAA_MAXHEAP_H
 
+#include <stdio.h>
 #include <vector>
 
 class MaxHeap {
@@ -20,6 +21,8 @@ public:
     void bubbleDown();
 
     int remove();
+
+    void print() const;
 
 private:
     std::vector<int> items;

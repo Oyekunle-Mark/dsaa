@@ -66,3 +66,12 @@ int MaxHeap::remove() {
 
     return ret;
 }
+
+void MaxHeap::print() const {
+    puts("Heap Items:");
+
+    for (auto item : items)
+        printf("%d ", item);
+
+    printf("\n");
+}
