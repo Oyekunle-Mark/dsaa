@@ -8,6 +8,9 @@
 #include <cstdio>
 #include <vector>
 
+/**
+ * The Max Heap class
+ */
 class MaxHeap {
 public:
     MaxHeap() : items{std::vector<int>{}} {}
