@@ -42,7 +42,7 @@ public:
 
     void bubbleDown();
 
-    const std::pair<int, std::string> & remove();
+    std::pair<int, std::string> remove();
 
     void emptyHeap();
 };
