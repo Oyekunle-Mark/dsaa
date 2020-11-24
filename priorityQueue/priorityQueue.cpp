@@ -4,15 +4,13 @@
 
 #include "priorityQueue.h"
 
-template<typename DataType>
-void PriorityQueue<DataType>::swap(int index1, int index2) {
+void PriorityQueue::swap(int index1, int index2) {
     auto temp = items.at(index1);
     items.at(index1) = items.at(index2);
     items.at(index2) = temp;
 }
 
-template<typename DataType>
-void PriorityQueue<DataType>::bubbleUp() {
+void PriorityQueue::bubbleUp() {
     int index = static_cast<int>(items.size() - 1);
 
     while (index > 0) {
@@ -26,16 +24,14 @@ void PriorityQueue<DataType>::bubbleUp() {
     }
 }
 
-template<typename DataType>
-void PriorityQueue<DataType>::insert(int priority, const DataType &data) {
-    items.push_back(Node_t{priority, data});
+void PriorityQueue::insert(int priority, const std::string &data) {
+    items.emplace_back(priority, data);
 
     if (items.size() > 1)
         bubbleUp();
 }
 
-template<typename DataType>
-void PriorityQueue<DataType>::bubbleDown() {
+void PriorityQueue::bubbleDown() {
     int parentIndex = 0;
 
     while (parentIndex < items.size()) {
@@ -61,20 +57,21 @@ void PriorityQueue<DataType>::bubbleDown() {
     }
 }
 
-template<typename DataType>
-void PriorityQueue<DataType>::remove() {
-    swap(0, items.size() - 1);
+const std::pair<int, std::string> &PriorityQueue::remove() {
+    swap(0, static_cast<int>(items.size() - 1));
+    auto temp = items.back();
     items.pop_back();
 
     if (items.size() > 1)
         bubbleDown();
+
+    return std::move(std::pair<int, std::string>{temp.priority, temp.data});
 }
 
-template<typename DataType>
-void PriorityQueue<DataType>::emptyHeap() {
+void PriorityQueue::emptyHeap() {
     for ([[maybe_unused]] const auto &_ : items) {
-        auto item = peek();
-        printf("Priority %d | Data %s\n", item.priority, item.data);
+        auto item = remove();
+        printf("Priority %d | Data %s", item.first, item.second.c_str());
         remove();
     }
 }

@@ -1,9 +1,8 @@
 #include <memory>
-#include <string>
 #include "priorityQueue/priorityQueue.cpp"
 
 int main() {
-    std::unique_ptr<PriorityQueue<std::string>> pQueue = std::make_unique<PriorityQueue<std::string>>();
+    std::unique_ptr<PriorityQueue> pQueue = std::make_unique<PriorityQueue>();
     pQueue->insert(2, std::string{"Go home"});
     pQueue->insert(3, std::string{"Read"});
     pQueue->insert(4, std::string{"Work out"});

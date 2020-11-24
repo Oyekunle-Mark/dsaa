@@ -5,49 +5,44 @@
 #ifndef DSAA_PRIORITYQUEUE_H
 #define DSAA_PRIORITYQUEUE_H
 
-#include <stdio.h>
+#include <cstdio>
+#include <utility>
 #include <vector>
+#include <string>
 
-template<typename DataType>
 class PriorityQueue {
 private:
-    template<typename NodeData>
     struct QueueNode {
         int priority;
-        NodeData data;
+        std::string data;
 
-        explicit QueueNode(int priority, const NodeData &data)
-                : priority{priority}, data{data} {}
+        explicit QueueNode(int priority, std::string data)
+                : priority{priority}, data{std::move(data)} {}
 
-        bool operator<(const QueueNode<NodeData> &rhs) const {
+        bool operator<(const QueueNode &rhs) const {
             return this->priority < rhs.priority;
         }
 
-        bool operator>(const QueueNode<NodeData> &rhs) const {
+        bool operator>(const QueueNode &rhs) const {
             return this->priority > rhs.priority;
         }
     };
 
-    using Node_t = QueueNode<DataType>;
+    std::vector<QueueNode> items;
 
-    std::vector<Node_t> items;
-
-    const Node_t &peek() {
-        return items.front();
-    }
 
 public:
-    PriorityQueue() : items{std::vector<Node_t>{}} {}
+    PriorityQueue() : items{std::vector<QueueNode>{}} {}
 
     void swap(int index1, int index2);
 
     void bubbleUp();
 
-    void insert(int priority, const DataType &data);
+    void insert(int priority, const std::string &data);
 
     void bubbleDown();
 
-    void remove();
+    const std::pair<int, std::string> & remove();
 
     void emptyHeap();
 };
