@@ -30,3 +30,28 @@ void MaxHeap::insert(int item) {
     if (items.size() > 1)
         bubbleUp();
 }
+
+void MaxHeap::bubbleDown() {
+    int parentIndex = 0;
+
+    while (parentIndex < items.size()) {
+        int leftChildIndex = (2 * parentIndex) + 1;
+        int rightChildIndex = (2 * parentIndex) + 2;
+        int indexToSwap = -1;
+
+        if (leftChildIndex < items.size() && items.at(leftChildIndex) > items.at(parentIndex))
+            indexToSwap = leftChildIndex;
+
+        if (rightChildIndex < items.size()) {
+            if ((items.at(rightChildIndex) > items.at(parentIndex) && indexToSwap == -1) ||
+                (items.at(rightChildIndex) > items.at(leftChildIndex) && indexToSwap != -1))
+                indexToSwap = rightChildIndex;
+        }
+
+        if (indexToSwap == -1)
+            break;
+
+        swap(parentIndex, indexToSwap);
+        parentIndex = indexToSwap;
+    }
+}
