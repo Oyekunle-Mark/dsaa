@@ -11,7 +11,7 @@ void MaxHeap::swap(size_t index1, size_t index2) {
 }
 
 void MaxHeap::bubbleUp() {
-    int index = items.size() - 1;
+    int index = static_cast<int>(items.size() - 1);
 
     while (index > 0) {
         int parentIndex = (index - 1) / 2;
@@ -57,6 +57,9 @@ void MaxHeap::bubbleDown() {
 }
 
 int MaxHeap::remove() {
+    if (items.empty())
+        throw std::runtime_error("Cannot pop from an empty heap");
+
     swap(0, items.size() - 1);
     auto ret = items.back();
     items.pop_back();

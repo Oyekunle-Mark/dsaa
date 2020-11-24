@@ -1,21 +1,19 @@
 #include <iostream>
-#include "leetcode/linkedList/doublyLinkedList.cpp"
+#include <memory>
+#include "binaryHeap/MaxHeap.cpp"
 
 int main() {
-    MyLinkedList myLinkedList{};
-    myLinkedList.addAtHead(7);
-    myLinkedList.addAtHead(2);
-    myLinkedList.addAtHead(1);
-    myLinkedList.addAtIndex(3, 0);
-    myLinkedList.deleteAtIndex(2);
-    myLinkedList.addAtHead(6);
-    myLinkedList.addAtTail(4);
-    myLinkedList.print();
-    std::cout << myLinkedList.get(4) << '\n';
-    myLinkedList.addAtHead(4);
-    myLinkedList.addAtIndex(5, 0);
-    myLinkedList.addAtHead(6);
-    myLinkedList.print();
+    std::unique_ptr<MaxHeap> heap = std::make_unique<MaxHeap>();
+    heap->insert(2);
+    heap->insert(45);
+    heap->insert(3);
+    heap->insert(11);
+    heap->insert(6);
+    heap->insert(8);
+    heap->insert(6);
+
+    std::cout << "Remove: " << heap->remove() << '\n';
+
 
     return 0;
 }
