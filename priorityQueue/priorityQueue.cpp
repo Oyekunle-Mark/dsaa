@@ -58,6 +58,9 @@ void PriorityQueue::bubbleDown() {
 }
 
 const std::pair<int, std::string> &PriorityQueue::remove() {
+    if (items.empty())
+        throw std::runtime_error("Cannot pop from an empty heap");
+
     swap(0, static_cast<int>(items.size() - 1));
     auto temp = items.back();
     items.pop_back();
@@ -69,9 +72,10 @@ const std::pair<int, std::string> &PriorityQueue::remove() {
 }
 
 void PriorityQueue::emptyHeap() {
+    puts("Popping heap items:");
+
     for ([[maybe_unused]] const auto &_ : items) {
         auto item = remove();
-        printf("Priority %d | Data %s", item.first, item.second.c_str());
-        remove();
+        printf("Priority %d | Data %s\n", item.first, item.second.c_str());
     }
 }
