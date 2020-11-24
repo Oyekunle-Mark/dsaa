@@ -1,18 +1,17 @@
 #include <memory>
-#include "binaryHeap/MaxHeap.cpp"
+#include <string>
+#include "priorityQueue/priorityQueue.cpp"
 
 int main() {
-    std::unique_ptr<MaxHeap> heap = std::make_unique<MaxHeap>();
-    heap->insert(2);
-    heap->insert(45);
-    heap->insert(3);
-    heap->insert(11);
-    heap->insert(6);
-    heap->insert(8);
-    heap->insert(7);
-
-
-    heap->emptyHeap();
+    std::unique_ptr<PriorityQueue<std::string>> pQueue = std::make_unique<PriorityQueue<std::string>>();
+    pQueue->insert(2, "Go home");
+    pQueue->insert(3, "Read");
+    pQueue->insert(4, "Work out");
+    pQueue->insert(1, "Eat");
+    pQueue->insert(1, "Sleep");
+    pQueue->insert(12, "Watch some sports");
+    pQueue->insert(6, "Dance bro!");
+    pQueue->emptyHeap();
 
     return 0;
 }
