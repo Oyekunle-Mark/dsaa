@@ -7,23 +7,34 @@
 
 #include <vector>
 
-template<typename QueueItem>
+template<typename DataType>
 class PriorityQueue {
+private:
+    template<typename NodeData>
+    struct QueueNode {
+        int priority;
+        NodeData data;
+
+        explicit QueueNode(int priority, const NodeData &data)
+                : priority{priority}, data{data} {}
+    };
+
+    using Node_t = QueueNode<DataType>;
+
+    std::vector<Node_t> items;
+
 public:
-    PriorityQueue() : items{std::vector<QueueItem>{}} {}
+    PriorityQueue() : items{std::vector<Node_t>{}} {}
 
     void swap(int index1, int index2);
 
     void bubbleUp();
 
-    void insert(const QueueItem &item);
+    void insert(const Node_t &item);
 
     void bubbleDown();
 
-    const QueueItem &remove();
-
-private:
-    std::vector<QueueItem> items;
+    const Node_t &remove();
 };
 
 
