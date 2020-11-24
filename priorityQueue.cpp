@@ -33,3 +33,30 @@ void PriorityQueue<DataType>::insert(int priority, const DataType &data) {
     if (items.size() > 1)
         bubbleUp();
 }
+
+template<typename DataType>
+void PriorityQueue<DataType>::bubbleDown() {
+    int parentIndex = 0;
+
+    while (parentIndex < items.size()) {
+        int leftChildIndex = (2 * parentIndex) + 1;
+        int rightChildIndex = (2 * parentIndex) + 2;
+        int indexToSwap = -1;
+
+        if (leftChildIndex < items.size() && items.at(parentIndex) > items.at(leftChildIndex))
+            indexToSwap = leftChildIndex;
+
+        if (rightChildIndex < items.size()) {
+            if ((items.at(parentIndex) > items.at(rightChildIndex) && indexToSwap != -1) ||
+                (items.at(rightChildIndex) < items.at(leftChildIndex) && indexToSwap != -1))
+                indexToSwap = rightChildIndex;
+
+        }
+
+        if (indexToSwap == -1)
+            break;
+
+        swap(parentIndex, indexToSwap);
+        parentIndex = indexToSwap;
+    }
+}
