@@ -60,3 +60,12 @@ void PriorityQueue<DataType>::bubbleDown() {
         parentIndex = indexToSwap;
     }
 }
+
+template<typename DataType>
+void PriorityQueue<DataType>::remove() {
+    swap(0, items.size() - 1);
+    items.pop_back();
+
+    if (items.size() > 1)
+        bubbleDown();
+}

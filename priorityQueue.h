@@ -31,7 +31,9 @@ private:
 
     std::vector<Node_t> items;
 
-    const Node_t &peek();
+    const Node_t &peek() {
+        return items.back();
+    }
 
 public:
     PriorityQueue() : items{std::vector<Node_t>{}} {}
