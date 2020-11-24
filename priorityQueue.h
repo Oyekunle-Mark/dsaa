@@ -5,6 +5,7 @@
 #ifndef DSAA_PRIORITYQUEUE_H
 #define DSAA_PRIORITYQUEUE_H
 
+#include <stdio.h>
 #include <vector>
 
 template<typename DataType>
@@ -47,6 +48,8 @@ public:
     void bubbleDown();
 
     void remove();
+
+    void emptyHeap();
 };
 
 

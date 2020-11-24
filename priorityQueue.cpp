@@ -69,3 +69,12 @@ void PriorityQueue<DataType>::remove() {
     if (items.size() > 1)
         bubbleDown();
 }
+
+template<typename DataType>
+void PriorityQueue<DataType>::emptyHeap() {
+    for (const auto &_ : items) {
+        auto item = peek();
+        printf("Priority %d | Data %s", item.priority, item.data);
+        remove();
+    }
+}
