@@ -31,6 +31,8 @@ private:
 
     std::vector<Node_t> items;
 
+    const Node_t &peek();
+
 public:
     PriorityQueue() : items{std::vector<Node_t>{}} {}
 
@@ -42,7 +44,7 @@ public:
 
     void bubbleDown();
 
-    const Node_t &remove();
+    void remove();
 };
 
 
