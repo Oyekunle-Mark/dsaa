@@ -25,3 +25,11 @@ void PriorityQueue<DataType>::bubbleUp() {
             break;
     }
 }
+
+template<typename DataType>
+void PriorityQueue<DataType>::insert(int priority, const DataType &data) {
+    items.push_back(Node_t{priority, data});
+
+    if (items.size() > 1)
+        bubbleUp();
+}

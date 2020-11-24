@@ -38,7 +38,7 @@ public:
 
     void bubbleUp();
 
-    void insert(const Node_t &item);
+    void insert(int priority, const DataType &data);
 
     void bubbleDown();
 
