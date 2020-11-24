@@ -5,7 +5,7 @@
 #ifndef DSAA_MAXHEAP_H
 #define DSAA_MAXHEAP_H
 
-#include <stdio.h>
+#include <cstdio>
 #include <vector>
 
 class MaxHeap {
@@ -22,7 +22,7 @@ public:
 
     int remove();
 
-    void print() const;
+    void emptyHeap();
 
 private:
     std::vector<int> items;

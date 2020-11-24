@@ -70,11 +70,13 @@ int MaxHeap::remove() {
     return ret;
 }
 
-void MaxHeap::print() const {
-    puts("Heap Items:");
+void MaxHeap::emptyHeap() {
+    puts("Popping heap items:");
 
-    for (auto item : items)
-        printf("%d ", item);
+    for ([[maybe_unused]] auto _ : items) {
+        auto popped = remove();
+        printf("%d\n", popped);
+    }
 
     printf("\n");
 }

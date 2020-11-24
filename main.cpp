@@ -1,4 +1,3 @@
-#include <iostream>
 #include <memory>
 #include "binaryHeap/MaxHeap.cpp"
 
@@ -10,10 +9,10 @@ int main() {
     heap->insert(11);
     heap->insert(6);
     heap->insert(8);
-    heap->insert(6);
+    heap->insert(7);
 
-    std::cout << "Remove: " << heap->remove() << '\n';
 
+    heap->emptyHeap();
 
     return 0;
 }
