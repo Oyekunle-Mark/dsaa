@@ -23,3 +23,10 @@ void MaxHeap::bubbleUp() {
             break;
     }
 }
+
+void MaxHeap::insert(int item) {
+    items.push_back(item);
+
+    if (items.size() > 1)
+        bubbleUp();
+}
