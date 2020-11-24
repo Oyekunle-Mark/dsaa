@@ -72,9 +72,9 @@ void PriorityQueue<DataType>::remove() {
 
 template<typename DataType>
 void PriorityQueue<DataType>::emptyHeap() {
-    for (const auto &_ : items) {
+    for ([[maybe_unused]] const auto &_ : items) {
         auto item = peek();
-        printf("Priority %d | Data %s", item.priority, item.data);
+        printf("Priority %d | Data %s\n", item.priority, item.data);
         remove();
     }
 }

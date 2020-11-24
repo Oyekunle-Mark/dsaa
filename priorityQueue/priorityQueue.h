@@ -33,7 +33,7 @@ private:
     std::vector<Node_t> items;
 
     const Node_t &peek() {
-        return items.back();
+        return items.front();
     }
 
 public:
