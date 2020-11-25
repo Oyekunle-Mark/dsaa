@@ -4,12 +4,18 @@
 
 #include "MaxHeap.h"
 
+/**
+ * Swaps two heap items
+ */
 void MaxHeap::swap(size_t index1, size_t index2) {
     auto temp = items.at(index1);
     items.at(index1) = items.at(index2);
     items.at(index2) = temp;
 }
 
+/**
+ * Bubbles an item up in the heap depending on priority to the right position
+ */
 void MaxHeap::bubbleUp() {
     int index = static_cast<int>(items.size() - 1);
 
@@ -24,6 +30,9 @@ void MaxHeap::bubbleUp() {
     }
 }
 
+/**
+ * Inserts into the heap
+ */
 void MaxHeap::insert(int item) {
     items.push_back(item);
 
@@ -31,6 +40,9 @@ void MaxHeap::insert(int item) {
         bubbleUp();
 }
 
+/**
+ * Bubbles an item down in the heap into it's right position
+ */
 void MaxHeap::bubbleDown() {
     int parentIndex = 0;
 
@@ -56,6 +68,9 @@ void MaxHeap::bubbleDown() {
     }
 }
 
+/**
+ * Remove from heap.
+ */
 int MaxHeap::remove() {
     if (items.empty())
         throw std::runtime_error("Cannot pop from an empty heap");
@@ -70,6 +85,9 @@ int MaxHeap::remove() {
     return ret;
 }
 
+/**
+ * Empties the heap and prints each item as it removes it.
+ */
 void MaxHeap::emptyHeap() {
     puts("Popping heap items:");
 
