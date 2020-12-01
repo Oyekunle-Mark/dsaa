@@ -46,7 +46,13 @@ public:
 
     /** Removes the mapping of the specified value key if this map contains a mapping for the key */
     void remove(int key) {
+        const auto index = hash(key);
 
+        auto itr = std::find_if(buckets->at(index).begin(), buckets->at(index).end(),
+                                [key](std::pair<int, int> item) { return item.first == key; });
+
+        if (itr != buckets->at(index).end())
+            buckets->at(index).erase(itr);
     }
 
 private:
