@@ -33,7 +33,15 @@ public:
 
     /** Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key */
     int get(int key) {
+        const auto index = hash(key);
 
+        auto itr = std::find_if(buckets->at(index).begin(), buckets->at(index).end(),
+                                [key](std::pair<int, int> item) { return item.first == key; });
+
+        if (itr != buckets->at(index).end())
+            return itr->second;
+
+        return -1;
     }
 
     /** Removes the mapping of the specified value key if this map contains a mapping for the key */
