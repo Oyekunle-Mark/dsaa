@@ -51,7 +51,7 @@ public:
     }
 
 private:
-    static constexpr std::size_t size = 10000;
+    static constexpr std::size_t size = 50000;  // an arbitrarily large bucket to reduce collision
     std::unique_ptr<std::array<std::list<int>, size>> buckets;
 };
 
