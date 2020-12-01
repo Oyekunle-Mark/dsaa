@@ -56,7 +56,7 @@ public:
     }
 
 private:
-    static constexpr std::size_t bucketSize = 10000;
+    static constexpr std::size_t bucketSize = 10000;    // choose max number of operations as ideal bucket size
     std::unique_ptr<std::array<std::list<std::pair<int, int>>, bucketSize>> buckets;
 };
 
