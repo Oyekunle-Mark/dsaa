@@ -37,7 +37,14 @@ public:
 
     /** Returns true if this set contains the specified element */
     bool contains(int key) {
+        const auto index = hash(key);
 
+        auto itr = std::find(buckets->at(index).begin(), buckets->at(index).end(), key);
+
+        if (itr != buckets->at(index).end())
+            return true;
+
+        return false;
     }
 
 private:
