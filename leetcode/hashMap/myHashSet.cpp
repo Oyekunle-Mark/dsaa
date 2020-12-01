@@ -4,6 +4,7 @@
 #include <array>
 #include <list>
 #include <memory>
+#include <algorithm>
 
 class MyHashSet {
 public:
@@ -22,7 +23,12 @@ public:
     }
 
     void add(int key) {
+        const auto index = hash(key);
 
+        auto itr = std::find(buckets->at(index).begin(), buckets->at(index).end(), key);
+
+        if (itr != buckets->at(index).end())
+            buckets->at(index).insert(buckets->at(index).begin(), key);
     }
 
     void remove(int key) {
