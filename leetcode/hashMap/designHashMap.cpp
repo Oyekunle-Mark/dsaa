@@ -12,6 +12,12 @@ public:
     MyHashMap()
             : buckets{std::make_unique<std::array<std::list<int>, bucketSize>>()} {}
 
+    /** Hash function to return bucket index for a key */
+    std::size_t hash(std::size_t key) {
+        auto h = std::hash<std::size_t>{}(key);
+        return h % bucketSize;
+    }
+
     /** value will always be non-negative. */
     void put(int key, int value) {
 
