@@ -1,13 +1,16 @@
 //
 // Created by Oyekunle Oloyede on 01/12/2020.
 //
+#include <array>
+#include <list>
+#include <algorithm>
+#include <memory>
 
 class MyHashMap {
 public:
     /** Initialize your data structure here. */
-    MyHashMap() {
-
-    }
+    MyHashMap()
+            : buckets{std::make_unique<std::array<std::list<int>, bucketSize>>()} {}
 
     /** value will always be non-negative. */
     void put(int key, int value) {
@@ -23,6 +26,10 @@ public:
     void remove(int key) {
 
     }
+
+private:
+    static constexpr std::size_t bucketSize = 10000;
+    std::unique_ptr<std::array<std::list<int>, bucketSize>> buckets;
 };
 
 /**

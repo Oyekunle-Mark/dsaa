@@ -10,9 +10,7 @@ class MyHashSet {
 public:
     /** Initialize your data structure here. */
     MyHashSet()
-            : buckets{std::make_unique<std::array<std::list<int>, size>>()} {
-
-    }
+            : buckets{std::make_unique<std::array<std::list<int>, size>>()} {}
 
     /** Hash function to return bucket index for a key */
     std::size_t hash(std::size_t key) {
