@@ -5,6 +5,7 @@
 #include <list>
 #include <memory>
 #include <algorithm>
+#include <functional>
 
 class MyHashSet {
 public:
@@ -15,11 +16,8 @@ public:
     }
 
     std::size_t hash(std::size_t key) {
-        key = ((key >> 16) ^ key) * 0x45d9f3b;
-        key = ((key >> 16) ^ key) * 0x45d9f3b;
-        key = (key >> 16) ^ key;
-
-        return key % size;
+        auto h = std::hash<std::size_t>{}(key);
+        return h % size;
     }
 
     void add(int key) {
