@@ -29,7 +29,7 @@ private:
 
 public:
     TreeNode *deleteNode(TreeNode *root, int key) {
-        if (root == nullptr) // if tree is emptu
+        if (root == nullptr) // if tree is empty
             return root;
 
         if (key < root->val)
