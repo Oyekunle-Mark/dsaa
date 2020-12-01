@@ -10,7 +10,7 @@ class MyHashMap {
 public:
     /** Initialize your data structure here. */
     MyHashMap()
-            : buckets{std::make_unique<std::array<std::list<int>, bucketSize>>()} {}
+            : buckets{std::make_unique<std::array<std::list<std::pair<int, int>>, bucketSize>>()} {}
 
     /** Hash function to return bucket index for a key */
     std::size_t hash(std::size_t key) {
@@ -20,7 +20,12 @@ public:
 
     /** value will always be non-negative. */
     void put(int key, int value) {
+        const auto index = hash(key);
 
+        auto itr = std::find(buckets->at(index).begin(), buckets->at(index).end(), std::pair<int, int>{key, value});
+
+//        if (itr == buckets->at(index).end())
+//            buckets->at(index).insert(buckets->at(index).begin(), key);
     }
 
     /** Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key */
@@ -35,7 +40,7 @@ public:
 
 private:
     static constexpr std::size_t bucketSize = 10000;
-    std::unique_ptr<std::array<std::list<int>, bucketSize>> buckets;
+    std::unique_ptr<std::array<std::list<std::pair<int, int>>, bucketSize>> buckets;
 };
 
 /**
