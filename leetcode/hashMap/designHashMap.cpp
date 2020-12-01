@@ -22,10 +22,13 @@ public:
     void put(int key, int value) {
         const auto index = hash(key);
 
-        auto itr = std::find(buckets->at(index).begin(), buckets->at(index).end(), std::pair<int, int>{key, value});
+        auto itr = std::find_if(buckets->at(index).begin(), buckets->at(index).end(),
+                                [key](std::pair<int, int> item) { return item.first == key; });
 
-//        if (itr == buckets->at(index).end())
-//            buckets->at(index).insert(buckets->at(index).begin(), key);
+        if (itr == buckets->at(index).end())
+            buckets->at(index).insert(buckets->at(index).begin(), std::pair<int, int>{key, value});
+        else
+            itr->second = value;
     }
 
     /** Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key */
