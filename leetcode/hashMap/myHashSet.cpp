@@ -5,7 +5,6 @@
 #include <list>
 #include <memory>
 #include <algorithm>
-#include <functional>
 
 class MyHashSet {
 public:
@@ -35,7 +34,7 @@ public:
         auto itr = std::find(buckets->at(index).begin(), buckets->at(index).end(), key);
 
         if (itr != buckets->at(index).end())
-            buckets->at(index).erase(buckets->at(index).begin());
+            buckets->at(index).erase(itr);
     }
 
     /** Returns true if this set contains the specified element */
@@ -51,7 +50,7 @@ public:
     }
 
 private:
-    static constexpr std::size_t size = 50000;  // an arbitrarily large bucket to reduce collision
+    static constexpr std::size_t size = 10000;  // choose max number of operations as ideal bucket size
     std::unique_ptr<std::array<std::list<int>, size>> buckets;
 };
 
@@ -62,3 +61,71 @@ private:
  * obj->remove(key);
  * bool param_3 = obj->contains(key);
  */
+
+
+////
+//// Created by Oyekunle Oloyede on 01/12/2020.
+////
+//#include <array>
+//#include <list>
+//#include <memory>
+//#include <algorithm>
+//
+//class MyHashSet {
+//public:
+//    /** Initialize your data structure here. */
+//    MyHashSet()
+//            : buckets{std::make_unique<std::array<std::list<int>, bucketSize>>()} {
+//
+//    }
+//
+//    std::size_t hash(std::size_t key) {
+//        auto h = std::hash<std::size_t>{}(key);
+//        return h % bucketSize;
+//    }
+//
+//    void add(int key) {
+//        const auto index = hash(key);
+//        auto bucket = buckets->at(index);
+//
+//        auto itr = std::find(bucket.begin(), bucket.end(), key);
+//
+//        if (itr == bucket.end())
+//            bucket.insert(bucket.begin(), key);
+//    }
+//
+//    void remove(int key) {
+//        const auto index = hash(key);
+//        auto bucket = buckets->at(index);
+//
+//        auto itr = std::find(bucket.begin(), bucket.end(), key);
+//
+//        if (itr != bucket.end())
+//            bucket.erase(itr);
+//    }
+//
+//    /** Returns true if this set contains the specified element */
+//    bool contains(int key) {
+//        const auto index = hash(key);
+//        auto bucket = buckets->at(index);
+//
+//        auto itr = std::find(bucket.begin(), bucket.end(), key);
+//
+//        if (itr != bucket.end())
+//            return true;
+//
+//        return false;
+//    }
+//
+//private:
+//    static constexpr std::size_t bucketSize = 50000;  // an arbitrarily large bucket to reduce collision
+//    std::unique_ptr<std::array<std::list<int>, bucketSize>> buckets;
+//};
+//
+///**
+// * Your MyHashSet object will be instantiated and called as such:
+// * MyHashSet* obj = new MyHashSet();
+// * obj->add(key);
+// * obj->remove(key);
+// * bool param_3 = obj->contains(key);
+// */
