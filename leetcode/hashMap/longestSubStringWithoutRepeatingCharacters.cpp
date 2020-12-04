@@ -9,17 +9,20 @@ public:
     int lengthOfLongestSubstring(std::string s) {
         std::unordered_set<char> previousCharacters{};
         int max = 0;
-        int current = 0;
 
-        for (auto c : s) {
-            if (previousCharacters.count(c)) {
-                previousCharacters.clear();
-                current = 0;
+        for (int slowPointer = 0; slowPointer < s.size(); ++slowPointer) {
+            int current = 0;
+
+            for (int fastPointer = slowPointer; fastPointer < s.size(); ++fastPointer) {
+                if (previousCharacters.count(s.at(fastPointer))) {
+                    previousCharacters.clear();
+                    break;
+                }
+
+                previousCharacters.insert(s.at(fastPointer));
+                if (++current > max)
+                    max = current;
             }
-
-            previousCharacters.insert(c);
-            if (++current > max)
-                max = current;
         }
 
         return max;
