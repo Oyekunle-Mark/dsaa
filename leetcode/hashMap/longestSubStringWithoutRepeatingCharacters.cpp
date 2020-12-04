@@ -22,6 +22,9 @@ public:
                 previousCharacters.insert(s.at(fastPointer));
                 if (++current > max)
                     max = current;
+
+                if (fastPointer == s.size() - 1) // if at end, then end operation
+                    return max;
             }
         }
 
