@@ -12,12 +12,12 @@ public:
         std::unordered_map<std::string, std::vector<std::string>> groups{};
 
         for (const auto &str : strs) {
-            auto groupNumber = findGroup(str);
+            auto groupName = sortString(str);
 
-            if (groups.count(groupNumber))
-                groups.at(groupNumber).push_back(str);
+            if (groups.count(groupName))
+                groups.at(groupName).push_back(str);
             else
-                groups.insert({groupNumber, {str}});
+                groups.insert({groupName, {str}});
         }
 
         std::vector<std::vector<std::string>> groupedAnagrams{};
@@ -28,13 +28,7 @@ public:
         return groupedAnagrams;
     }
 
-    std::string findGroup(std::string str) {
-//        int sum = 0;
-//
-//        for (auto c : str)
-//            sum += c;
-//
-//        return sum;
+    std::string sortString(std::string str) {
         std::sort(str.begin(), str.end());
         return str;
     }
