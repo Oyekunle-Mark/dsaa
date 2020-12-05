@@ -38,12 +38,7 @@ public:
         if (carry)
             incrementedDigits.insert(incrementedDigits.begin(), 1);
 
-        std::vector<int> result{};
-
-        (void) std::for_each(incrementedDigits.begin(), incrementedDigits.end(),
-                             [&result](int digit) {
-                                 result.push_back(digit);
-                             });
+        std::vector<int> result(incrementedDigits.begin(), incrementedDigits.end());
 
         return result;
     }
