@@ -29,7 +29,7 @@ public:
                         carry = false;
                     }
                 } else {
-                    incrementedDigits.insert(incrementedDigits.begin(), digits.at(index) + 1);
+                    incrementedDigits.insert(incrementedDigits.begin(), digits.at(index));
                 }
 
             }
@@ -37,5 +37,14 @@ public:
 
         if (carry)
             incrementedDigits.insert(incrementedDigits.begin(), 1);
+
+        std::vector<int> result{};
+
+        (void) std::for_each(incrementedDigits.begin(), incrementedDigits.end(),
+                             [&result](int digit) {
+                                 result.push_back(digit);
+                             });
+
+        return result;
     }
 };
