@@ -11,6 +11,17 @@ public:
 
         if (needle.size() > haystack.size())
             return -1;
+
+        for (int index = 0; index < haystack.size(); ++index) {
+            if (haystack.at(index) == needle.at(0)) {
+                auto isFound = isMatch(haystack, needle, index);
+
+                if (isFound)
+                    return index;
+            }
+        }
+
+        return -1;
     }
 
     bool isMatch(const std::string &haystack, const std::string &needle, int haystackIndex) {
@@ -21,6 +32,6 @@ public:
                 return false;
         }
 
-        return needleIndex == needle.size() - 1;
+        return needleIndex == needle.size();
     }
 };
