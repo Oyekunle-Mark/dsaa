@@ -12,4 +12,15 @@ public:
         if (needle.size() > haystack.size())
             return -1;
     }
+
+    bool isMatch(const std::string &haystack, const std::string &needle, int haystackIndex) {
+        int needleIndex = 0;
+
+        for (; needleIndex < needle.size() && haystackIndex < haystack.size(); ++needleIndex, ++haystackIndex) {
+            if (haystack.at(haystackIndex) != needle.at(needleIndex))
+                return false;
+        }
+
+        return needleIndex == needle.size() - 1;
+    }
 };
