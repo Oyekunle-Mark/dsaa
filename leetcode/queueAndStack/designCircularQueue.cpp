@@ -1,15 +1,25 @@
 //
 // Created by Oyekunle Oloyede on 09/12/2020.
 //
+#include <array>
 
 class MyCircularQueue {
 public:
-    MyCircularQueue(int k) {
-
-    }
+    MyCircularQueue(int k)
+            : queue{std::array<int, k>{}}, head{-1}, tail{-1} {}
 
     bool enQueue(int value) {
+        if (isFull())
+            return false;
 
+        if (isEmpty()) {
+            head = tail = 0;
+            queue.at(tail) = value;
+            return true;
+        }
+
+        queue.at(++tail) = value;
+        return true;
     }
 
     bool deQueue() {
@@ -25,12 +35,17 @@ public:
     }
 
     bool isEmpty() {
-
+        return head == -1 && tail == -1;
     }
 
     bool isFull() {
 
     }
+
+private:
+    std::array<int, 0> queue;
+    int head;
+    int tail;
 };
 
 /**
